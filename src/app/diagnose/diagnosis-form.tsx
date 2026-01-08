@@ -297,15 +297,15 @@ export default function Diagnosis() {
       
       <div>
         <h2 className="text-xl font-bold text-center mb-4">Tips for best results</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-2">
           {tips.map(tip => (
             <Card key={tip.title} className="bg-card">
-              <CardContent className="flex flex-col items-center text-center p-6 space-y-2">
-                 <div className="p-3 bg-primary/10 rounded-lg">
-                  <tip.icon className="h-8 w-8 text-primary" />
+              <CardContent className="flex flex-col items-center text-center p-3 space-y-1">
+                 <div className="p-2 bg-primary/10 rounded-lg">
+                  <tip.icon className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="font-semibold">{tip.title}</h3>
-                <p className="text-sm text-muted-foreground">{tip.description}</p>
+                <h3 className="font-semibold text-sm">{tip.title}</h3>
+                <p className="text-xs text-muted-foreground">{tip.description}</p>
               </CardContent>
             </Card>
           ))}
