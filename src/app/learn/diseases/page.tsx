@@ -12,6 +12,9 @@ import {
   ChevronRight,
   BriefcaseMedical,
   Camera,
+  ShieldCheck,
+  FlaskConical,
+  HeartPulse,
 } from 'lucide-react';
 import { diseases, placeholderImages } from '@/lib/placeholder-data';
 import { Badge } from '@/components/ui/badge';
@@ -19,8 +22,17 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+} from '@/components/ui/dialog';
 
-type Disease = (typeof diseases)[0];
+type Disease = (typeof diseases)[0] & { type: string; severity: string; };
 
 const diseaseImages: { [key: string]: string | undefined } = {
   'Newcastle Disease': placeholderImages.find(img => img.id === 'diseases-1')?.imageUrl,
@@ -30,19 +42,6 @@ const diseaseImages: { [key: string]: string | undefined } = {
 };
 
 
-const getSeverityVariant = (severity: string): 'destructive' | 'secondary' | 'default' => {
-  switch (severity.toLowerCase()) {
-    case 'high':
-    case 'critical':
-      return 'destructive';
-    case 'moderate':
-      return 'secondary';
-    case 'low':
-      return 'default';
-    default:
-      return 'default';
-  }
-};
 const getSeverityClass = (severity: string): string => {
   switch (severity.toLowerCase()) {
     case 'high':
@@ -61,10 +60,11 @@ const getSeverityClass = (severity: string): string => {
 export default function DiseasesPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeFilter, setActiveFilter] = useState('All');
+  const [selectedDisease, setSelectedDisease] = useState<Disease | null>(null);
   
   const filters = ['All', 'Viral', 'Bacterial', 'Parasitic'];
 
-  const filteredDiseases = diseases
+  const filteredDiseases: Disease[] = diseases
     .map(d => {
         const type = d.cure.toLowerCase().includes('no cure') ? 'Viral' :
                      d.name.toLowerCase().includes('coccidiosis') ? 'Parasitic' : 'Bacterial';
@@ -126,8 +126,8 @@ export default function DiseasesPage() {
           <h2 className="text-sm font-semibold text-muted-foreground mb-3">COMMON DISEASES</h2>
           <div className="space-y-3">
             {filteredDiseases.map((disease) => (
-              <Card key={disease.name} className="p-3 bg-white shadow-md rounded-2xl">
-                <Link href="#" className="flex items-center gap-4">
+              <Card key={disease.name} className="p-3 bg-white shadow-md rounded-2xl" onClick={() => setSelectedDisease(disease)}>
+                <div className="flex items-center gap-4 cursor-pointer">
                   <div className="relative w-20 h-20 rounded-xl overflow-hidden">
                     <Image 
                       src={diseaseImages[disease.name] || 'https://picsum.photos/seed/sickchicken/200'} 
@@ -148,11 +148,60 @@ export default function DiseasesPage() {
                     </div>
                   </div>
                   <ChevronRight className="text-muted-foreground" />
-                </Link>
+                </div>
               </Card>
             ))}
           </div>
         </div>
+        
+        {selectedDisease && (
+          <Dialog open={!!selectedDisease} onOpenChange={(open) => !open && setSelectedDisease(null)}>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle className="text-2xl font-bold font-headline">{selectedDisease.name}</DialogTitle>
+                <DialogDescription>
+                  <div className="flex items-center gap-2 mt-2 text-xs">
+                    <Badge className={cn("border-none", getSeverityClass(selectedDisease.severity))}>
+                      Severity: {selectedDisease.severity}
+                    </Badge>
+                    <span className="text-muted-foreground">• {selectedDisease.type}</span>
+                  </div>
+                </DialogDescription>
+              </DialogHeader>
+              <div className="py-4 space-y-6">
+                <div>
+                  <h3 className="font-semibold text-lg flex items-center gap-2 mb-2">
+                    <HeartPulse className="text-primary"/> Symptoms
+                  </h3>
+                   <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                    {selectedDisease.symptoms.map((symptom, i) => <li key={i}>{symptom}</li>)}
+                  </ul>
+                </div>
+                <div>
+                   <h3 className="font-semibold text-lg flex items-center gap-2 mb-2">
+                    <ShieldCheck className="text-primary"/> Prevention
+                  </h3>
+                   <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                    {selectedDisease.prevention.map((item, i) => <li key={i}>{item}</li>)}
+                  </ul>
+                </div>
+                <div>
+                   <h3 className="font-semibold text-lg flex items-center gap-2 mb-2">
+                    <FlaskConical className="text-primary"/> Cure & Treatment
+                  </h3>
+                  <p className="text-muted-foreground">{selectedDisease.cure}</p>
+                </div>
+              </div>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button type="button" variant="secondary">
+                    Close
+                  </Button>
+                </DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        )}
 
         <Card className="bg-slate-800 text-white rounded-2xl p-6 text-center">
             <div className="flex justify-center mb-4">
