@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
@@ -9,6 +10,8 @@ import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 import { breeds } from '@/lib/placeholder-data';
 import { ThemeToggle } from './theme-toggle';
+import { useEffect, useState }from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 
 const navItems = [
@@ -56,9 +59,45 @@ const HeaderActions = () => {
 export function AppLayout({ children }: { children: React.ReactNode }) {
    const pathname = usePathname();
    const router = useRouter();
+   const { toast } = useToast();
    const title = getPageTitle(pathname);
    const isSubPage = !navItems.some(item => item.href === pathname);
    const isHomePage = pathname === '/';
+   const [lastBackPress, setLastBackPress] = useState(0);
+
+    useEffect(() => {
+        const handleBackButton = (event: PopStateEvent) => {
+            if (isHomePage) {
+                event.preventDefault();
+                const now = new Date().getTime();
+                if (now - lastBackPress < 2000) {
+                    // This is a web-equivalent of closing the app.
+                    // In a real native app, you would call a native exit method.
+                    window.location.href = 'about:blank';
+                } else {
+                    setLastBackPress(now);
+                    toast({
+                        description: "Press back again to exit",
+                    });
+                    // Push a new state to "catch" the next back button press
+                    history.pushState(null, '', window.location.href);
+                }
+            } else {
+                router.back();
+            }
+        };
+
+        // On the home page, we want to control the back button behavior.
+        if (isHomePage) {
+            history.pushState(null, '', window.location.href);
+            window.addEventListener('popstate', handleBackButton);
+        }
+
+        return () => {
+            window.removeEventListener('popstate', handleBackButton);
+        };
+    }, [isHomePage, lastBackPress, router, toast]);
+
 
   return (
     <>
