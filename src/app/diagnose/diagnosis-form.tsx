@@ -80,13 +80,9 @@ export default function Diagnosis() {
   const [isPending, startTransition] = useTransition();
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [imageDataUri, setImageDataUri] = useState<string>('');
-  const [hasCameraPermission, setHasCameraPermission] = useState<boolean | null>(null);
-  const [isCameraOpen, setIsCameraOpen] = useState(false);
   
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const streamRef = useRef<MediaStream | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
   const formRef = useRef<HTMLFormElement>(null);
@@ -98,52 +94,6 @@ export default function Diagnosis() {
     });
   };
 
-  const closeCamera = () => {
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach(track => track.stop());
-      streamRef.current = null;
-    }
-    if (videoRef.current) {
-        videoRef.current.srcObject = null;
-    }
-    setIsCameraOpen(false);
-  }
-
-  useEffect(() => {
-    const startCamera = async () => {
-        if (isCameraOpen) {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-                setHasCameraPermission(true);
-                streamRef.current = stream;
-                if (videoRef.current) {
-                    videoRef.current.srcObject = stream;
-                }
-            } catch (error) {
-                console.error('Error accessing camera:', error);
-                setHasCameraPermission(false);
-                setIsCameraOpen(false);
-                toast({
-                    variant: 'destructive',
-                    title: 'Camera Access Denied',
-                    description: 'Please enable camera permissions in your browser settings.',
-                });
-            }
-        }
-    };
-
-    startCamera();
-
-    // Cleanup function to close the camera when the component unmounts or isCameraOpen becomes false
-    return () => {
-        if (streamRef.current) {
-            streamRef.current.getTracks().forEach(track => track.stop());
-            streamRef.current = null;
-        }
-    };
-}, [isCameraOpen, toast]);
-
-
   useEffect(() => {
     if (state?.success === false && state.message) {
       toast({
@@ -154,7 +104,6 @@ export default function Diagnosis() {
     }
     if (state?.success === true) {
       handleRemoveImage();
-      closeCamera();
     }
   }, [state, toast]);
   
@@ -166,54 +115,15 @@ export default function Diagnosis() {
         setImageDataUri(resizedDataUrl);
       });
     }
+     // Reset file input to allow capturing the same file again
+    if (event.target) {
+      event.target.value = '';
+    }
   };
   
   const handleRemoveImage = () => {
     setPreviewUrl(null);
     setImageDataUri('');
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
-    }
-  };
-
-  const openCamera = () => {
-    closeCamera(); // Ensure any existing stream is stopped
-    setPreviewUrl(null);
-    setImageDataUri('');
-    setIsCameraOpen(true);
-  };
-
-  const takePicture = () => {
-    if (videoRef.current && canvasRef.current) {
-      const video = videoRef.current;
-      const canvas = canvasRef.current;
-      
-      const MAX_PREVIEW_SIZE = 512;
-      let { videoWidth: width, videoHeight: height } = video;
-      
-      if (width > height) {
-        if (width > MAX_PREVIEW_SIZE) {
-          height *= MAX_PREVIEW_SIZE / width;
-          width = MAX_PREVIEW_SIZE;
-        }
-      } else {
-        if (height > MAX_PREVIEW_SIZE) {
-          width *= MAX_PREVIEW_SIZE / height;
-          height = MAX_PREVIEW_SIZE;
-        }
-      }
-
-      canvas.width = width;
-      canvas.height = height;
-
-      const context = canvas.getContext('2d');
-      context?.drawImage(video, 0, 0, width, height);
-      const dataUrl = canvas.toDataURL('image/jpeg');
-      
-      setPreviewUrl(dataUrl);
-      setImageDataUri(dataUrl);
-      closeCamera();
-    }
   };
 
   const tips = [
@@ -291,15 +201,7 @@ export default function Diagnosis() {
         <Card className="w-full">
           <input type="hidden" name="photoDataUri" value={imageDataUri} />
           <CardContent className="p-6">
-            {isCameraOpen ? (
-              <div className="space-y-4">
-                <video ref={videoRef} className="w-full aspect-video rounded-md bg-muted" autoPlay muted playsInline />
-                <div className="flex gap-4">
-                  <Button onClick={closeCamera} variant="outline" className="w-full">Cancel</Button>
-                  <Button onClick={takePicture} className="w-full">Take Picture</Button>
-                </div>
-              </div>
-            ) : previewUrl ? (
+            {previewUrl ? (
               <div className="space-y-4">
                 <div className="relative w-full aspect-video rounded-md overflow-hidden">
                   <Image src={previewUrl} alt="Image preview" fill className="object-contain" />
@@ -347,7 +249,7 @@ export default function Diagnosis() {
                   <p className="text-muted-foreground">Take a picture or select from gallery</p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                   <Button type="button" onClick={openCamera} size="lg" className="bg-green-500 hover:bg-green-600 text-white">
+                   <Button type="button" onClick={() => cameraInputRef.current?.click()} size="lg" className="bg-green-500 hover:bg-green-600 text-white">
                     <Camera className="mr-2" />
                     Camera
                   </Button>
@@ -355,6 +257,7 @@ export default function Diagnosis() {
                     <GalleryHorizontal className="mr-2" />
                     Gallery
                   </Button>
+                  <input type="file" ref={cameraInputRef} onChange={handleFileChange} className="hidden" accept="image/*" capture="environment" />
                   <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept="image/*" />
                 </div>
               </div>
@@ -362,7 +265,6 @@ export default function Diagnosis() {
           </CardContent>
         </Card>
       </form>
-      <canvas ref={canvasRef} className="hidden"></canvas>
       
       <div>
         <h2 className="text-xl font-bold text-center mb-4">Tips for best results</h2>
@@ -409,5 +311,7 @@ export default function Diagnosis() {
     </div>
   );
 }
+
+    
 
     
