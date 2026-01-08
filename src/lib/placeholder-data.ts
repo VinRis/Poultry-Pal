@@ -6,21 +6,60 @@ export const placeholderImages: ImagePlaceholder[] = PlaceHolderImages;
 export const breeds = [
   {
     name: 'Kienyeji',
+    slug: 'kienyeji',
     description: 'A popular indigenous breed in Kenya, known for its resilience and adaptability to local conditions. They are dual-purpose, good for both meat and eggs.',
+    overview: 'The Kienyeji is specifically adapted for the Kenyan climate. It is a dual-purpose breed, meaning it is excellent for both meat and egg production. These birds are highly resistant to common poultry diseases and require less expensive feed compared to exotic breeds, making them ideal for small-scale farmers.',
     features: ['Hardy and disease-resistant', 'Free-range foragers', 'Flavorful meat and yellow-yolk eggs', 'Slower growth rate compared to hybrids'],
-    image: placeholderImages.find(img => img.id === 'kienyeji-1')
+    stats: [
+      { key: 'Yield', value: '120-150', unit: 'eggs/year', icon: 'Egg' },
+      { key: 'Maturity', value: '5-6', unit: 'months', icon: 'Clock' },
+      { key: 'Weight', value: '1.5-2.0', unit: 'kg', icon: 'Scale' }
+    ],
+    suitableEnvironments: ['Free Range System', 'Arid Areas', 'Disease Resistant'],
+    feedingHabits: 'Efficient scavengers. Best raised under a semi-free range system to reduce feed costs. Supplement with greens and kitchen waste.',
+    economicValue: 'High market demand for yellow-yolk eggs and leaner, tastier meat compared to broilers. Fetch premium prices in local markets.',
+    images: [
+        placeholderImages.find(img => img.id === 'kienyeji-1'),
+        placeholderImages.find(img => img.id === 'kienyeji-2'),
+    ].filter(Boolean) as ImagePlaceholder[]
   },
   {
     name: 'Kuroiler',
+    slug: 'kuroiler',
     description: 'A dual-purpose hybrid from India, developed to thrive in rural conditions. It is larger than the local Kienyeji and has a higher production rate.',
+    overview: 'The Kuroiler is a dual-purpose hybrid from India, developed to thrive in rural conditions. It is larger than the local Kienyeji and has a higher production rate, making it a popular choice for farmers looking for improved yields in both meat and eggs.',
     features: ['Higher egg production (around 150-200 eggs/year)', 'Faster growth and heavier weight', 'Good foragers, can survive on agricultural waste', 'More susceptible to diseases than Kienyeji'],
-    image: placeholderImages.find(img => img.id === 'kuroiler-1')
+    stats: [
+      { key: 'Yield', value: '150-200', unit: 'eggs/year', icon: 'Egg' },
+      { key: 'Maturity', value: '4-5', unit: 'months', icon: 'Clock' },
+      { key: 'Weight', value: '2.5-3.5', unit: 'kg', icon: 'Scale' }
+    ],
+    suitableEnvironments: ['Semi-intensive', 'Good for beginners'],
+    feedingHabits: 'Good foragers, but require more supplementary feed than Kienyeji to reach full potential. Benefit from commercial feeds.',
+    economicValue: 'Excellent for both meat and egg sales due to faster growth and higher lay rate. Can be sold at a premium over indigenous birds.',
+    images: [
+        placeholderImages.find(img => img.id === 'kuroiler-1'),
+        placeholderImages.find(img => img.id === 'kuroiler-2'),
+    ].filter(Boolean) as ImagePlaceholder[]
   },
   {
     name: 'Kenbro',
+    slug: 'kenbro',
     description: 'A dual-purpose breed developed in Kenya by Kenchic Ltd. It is well-suited for local conditions and has improved production traits.',
+    overview: 'The Kenbro is a dual-purpose breed developed in Kenya by Kenchic Ltd. It is well-suited for local conditions and has improved production traits, offering a balance between the hardiness of local birds and the productivity of hybrids.',
     features: ['Faster maturity than Kienyeji', 'Good for both meat and eggs', 'Robust and adaptable to different climates in Kenya', 'Requires slightly more intensive management'],
-    image: placeholderImages.find(img => img.id === 'kenbro-1')
+    stats: [
+      { key: 'Yield', value: '200-220', unit: 'eggs/year', icon: 'Egg' },
+      { key: 'Maturity', value: '4-5', unit: 'months', icon: 'Clock' },
+      { key: 'Weight', value: '3.0-4.0', unit: 'kg', icon: 'Scale' }
+    ],
+    suitableEnvironments: ['Free Range System', 'Semi-intensive', 'Adaptable Climate'],
+    feedingHabits: 'Perform well on commercial feeds but can also forage. A balanced diet is crucial for achieving high production rates.',
+    economicValue: 'High demand due to its large size and good egg-laying capabilities. Popular in both urban and rural markets.',
+    images: [
+        placeholderImages.find(img => img.id === 'kenbro-1'),
+        placeholderImages.find(img => img.id === 'kenbro-2'),
+    ].filter(Boolean) as ImagePlaceholder[]
   }
 ];
 
