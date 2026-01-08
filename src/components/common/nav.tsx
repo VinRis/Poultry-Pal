@@ -69,17 +69,22 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           rel="stylesheet"
         />
         <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-14 items-center justify-between max-w-2xl">
-                <div className='flex items-center gap-2'>
-                    {isSubPage && (
+            <div className="container grid h-14 max-w-2xl grid-cols-3 items-center">
+                <div className="flex items-center justify-start gap-2">
+                     {isSubPage ? (
                         <Button variant="ghost" size="icon" onClick={() => router.back()}>
                             <ArrowLeft />
                         </Button>
+                    ) : (
+                        isHomePage && <Logo className="h-7 w-7 text-primary" />
                     )}
-                    {isHomePage && <Logo className="h-7 w-7 text-primary" />}
-                    <h1 className="text-xl font-bold">{title}</h1>
                 </div>
-                <HeaderActions />
+                <div className="text-center">
+                    <h1 className="truncate text-xl font-bold">{title}</h1>
+                </div>
+                <div className="flex items-center justify-end">
+                    <HeaderActions />
+                </div>
             </div>
         </header>
         <div className="font-body antialiased pb-24">
