@@ -50,27 +50,6 @@ export default function LearnPage() {
       href: '/learn/brooding',
       image: placeholderImages.find(img => img.id === 'brooding-1'),
     },
-    {
-        title: 'Feeds & Nutrition',
-        description: 'A guide to balanced diets',
-        icon: <Wheat className="w-5 h-5" />,
-        href: '/learn/feeds',
-        image: placeholderImages.find(img => img.id === 'feeds-1'),
-    },
-    {
-        title: 'Housing & Equipment',
-        description: 'Best practices for coops',
-        icon: <Home className="w-5 h-5" />,
-        href: '/learn/housing',
-        image: placeholderImages.find(img => img.id === 'housing-1'),
-    },
-    {
-        title: 'Biosecurity Basics',
-        description: 'Protect your flock from diseases',
-        icon: <ShieldCheck className="w-5 h-5" />,
-        href: '/learn/biosecurity',
-        image: placeholderImages.find(img => img.id === 'biosecurity-1'),
-    }
   ];
 
   return (
@@ -112,5 +91,3 @@ export default function LearnPage() {
     </div>
   );
 }
-
-    
