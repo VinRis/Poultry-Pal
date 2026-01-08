@@ -21,7 +21,7 @@ export const breeds = [
     images: [
         placeholderImages.find(img => img.id === 'kienyeji-1'),
         placeholderImages.find(img => img.id === 'kienyeji-2'),
-    ].filter(Boolean) as ImagePlaceholder[]
+    ].filter((img): img is ImagePlaceholder => !!img)
   },
   {
     name: 'Kuroiler',
@@ -40,7 +40,7 @@ export const breeds = [
     images: [
         placeholderImages.find(img => img.id === 'kuroiler-1'),
         placeholderImages.find(img => img.id === 'kuroiler-2'),
-    ].filter(Boolean) as ImagePlaceholder[]
+    ].filter((img): img is ImagePlaceholder => !!img)
   },
   {
     name: 'Kenbro',
@@ -59,7 +59,7 @@ export const breeds = [
     images: [
         placeholderImages.find(img => img.id === 'kenbro-1'),
         placeholderImages.find(img => img.id === 'kenbro-2'),
-    ].filter(Boolean) as ImagePlaceholder[]
+    ].filter((img): img is ImagePlaceholder => !!img)
   }
 ];
 
