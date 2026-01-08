@@ -100,14 +100,16 @@ export default function DiseasesPage() {
     });
 
   return (
-    <div className="bg-gray-50 min-h-screen">
-      <header className="bg-gray-50/90 backdrop-blur-sm sticky top-0 z-40 p-4 flex items-center justify-between">
+    <div className="bg-gray-50 dark:bg-background min-h-screen">
+      <header className="bg-gray-50/90 dark:bg-background/90 backdrop-blur-sm sticky top-0 z-40 p-4 flex items-center justify-between">
         <Button variant="ghost" size="icon" onClick={() => router.back()}>
           <ArrowLeft />
         </Button>
         <h1 className="text-xl font-bold">Disease Library</h1>
-        <Button variant="ghost" size="icon">
-          <Settings />
+        <Button variant="ghost" size="icon" asChild>
+          <Link href="/settings">
+            <Settings />
+          </Link>
         </Button>
       </header>
 
@@ -122,7 +124,7 @@ export default function DiseasesPage() {
           <Input
             type="search"
             placeholder="Search diseases (e.g., Newcastle)"
-            className="pl-10 h-12 rounded-full bg-white shadow-sm"
+            className="pl-10 h-12 rounded-full bg-white dark:bg-card shadow-sm"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -148,7 +150,7 @@ export default function DiseasesPage() {
           <h2 className="text-sm font-semibold text-muted-foreground mb-3">COMMON DISEASES</h2>
           <div className="space-y-3">
             {filteredDiseases.map((disease) => (
-              <Card key={disease.name} className="p-3 bg-white shadow-md rounded-2xl" onClick={() => setSelectedDisease(disease)}>
+              <Card key={disease.name} className="p-3 bg-white dark:bg-card shadow-md rounded-2xl" onClick={() => setSelectedDisease(disease)}>
                 <div className="flex items-center gap-4 cursor-pointer">
                   <div className="relative w-20 h-20 rounded-xl overflow-hidden">
                     <Image 

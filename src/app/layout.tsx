@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { AppLayout } from '@/components/common/nav';
 import { Toaster } from '@/components/ui/toaster';
+import { ThemeProvider } from '@/components/common/theme-provider';
 
 export const metadata: Metadata = {
   title: 'Poultry Pal',
@@ -10,13 +11,25 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <AppLayout>
-      {children}
-      <Toaster />
-    </AppLayout>
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AppLayout>
+            {children}
+            <Toaster />
+          </AppLayout>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

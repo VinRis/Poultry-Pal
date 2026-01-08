@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Home, Stethoscope, Menu, User, BookOpen } from 'lucide-react';
+import { Home, Stethoscope, Menu, User, BookOpen, Settings } from 'lucide-react';
 
 import {
   SidebarHeader,
@@ -22,6 +22,7 @@ const navItems = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/diagnose', label: 'Diagnosis', icon: Stethoscope },
   { href: '/learn', label: 'Learn', icon: BookOpen },
+  { href: '/settings', label: 'Settings', icon: Settings },
 ];
 
 
@@ -29,17 +30,14 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
    const pathname = usePathname();
 
   return (
-     <html lang="en" suppressHydrationWarning>
-      <head>
+    <>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
           rel="stylesheet"
         />
-      </head>
-      <body className="font-body antialiased" suppressHydrationWarning>
-        <div className="pb-20">
+        <div className="font-body antialiased pb-20">
           {children}
         </div>
         <div className="fixed bottom-0 left-0 right-0 bg-background border-t z-50">
@@ -58,8 +56,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
               })}
             </div>
         </div>
-      </body>
-    </html>
+    </>
   )
 }
 
