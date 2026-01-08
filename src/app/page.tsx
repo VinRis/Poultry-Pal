@@ -67,8 +67,8 @@ export default function Home() {
             <AvatarFallback>FP</AvatarFallback>
           </Avatar>
           <div>
-            <h1 className="font-bold text-lg">Poultry Hub</h1>
-            <p className="text-sm text-muted-foreground flex items-center gap-1"><MapPin className="w-3 h-3" /> Nairobi, Kenya</p>
+            <p className="text-sm text-muted-foreground">Jambo,</p>
+            <h1 className="font-bold text-lg">Farmer Jane</h1>
           </div>
         </div>
         <Button variant="ghost" size="icon">
@@ -77,14 +77,7 @@ export default function Home() {
       </header>
       
       <main className="flex-1 p-4 space-y-8">
-        <section>
-          <h2 className="text-4xl font-bold font-headline">Jambo, Farmer!</h2>
-          <p className="flex items-center gap-2 text-yellow-500">
-            <Sun className="w-5 h-5" />
-            <span>24°C • Partly Cloudy</span>
-          </p>
-        </section>
-
+        
         <section>
           <Card className="relative w-full overflow-hidden text-white bg-slate-900">
              {heroImage && (
@@ -146,21 +139,6 @@ export default function Home() {
               </Card>
             ))}
           </div>
-        </section>
-
-        <section>
-          <Card className="flex items-center justify-between p-4 bg-primary/10 border-primary/20">
-            <div className="flex items-center gap-4">
-              <div className="p-3 bg-background rounded-lg">
-                <TrendingUp className="w-6 h-6 text-primary" />
-              </div>
-              <div>
-                <p className="text-xs text-primary font-bold">MARKET PRICE</p>
-                <p className="font-bold text-lg">Eggs (Tray): KES 450</p>
-              </div>
-            </div>
-            <ChevronRight className="w-6 h-6 text-muted-foreground" />
-          </Card>
         </section>
 
       </main>
