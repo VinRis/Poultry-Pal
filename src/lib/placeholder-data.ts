@@ -61,6 +61,82 @@ export const breeds = [
         placeholderImages.find(img => img.id === 'kenbro-1'),
         placeholderImages.find(img => img.id === 'kenbro-2'),
     ].filter((img): img is ImagePlaceholder => !!img)
+  },
+  {
+    name: 'Sasso',
+    slug: 'sasso',
+    description: 'A hardy, dual-purpose breed from France, known for its colored feathers and excellent meat quality, similar to indigenous chicken.',
+    overview: 'Sasso chickens are a robust breed, well-adapted to free-range and semi-intensive farming systems in Africa. They have a slower growth rate than commercial broilers but produce high-quality, flavorful meat that is preferred in many local markets. They are also reasonable egg layers.',
+    features: ['Excellent meat quality and taste', 'Hardy and disease-resistant', 'Good foragers, reducing feed costs', 'Available in various colors (red, grey, black)'],
+    stats: [
+      { key: 'Yield', value: '180-200', unit: 'eggs/year', icon: 'Egg' },
+      { key: 'Maturity', value: '4-5', unit: 'months', icon: 'Clock' },
+      { key: 'Weight', value: '2.5-3.0', unit: 'kg', icon: 'Scale' }
+    ],
+    suitableEnvironments: ['Free Range System', 'Organic Farming', 'Disease Resistant'],
+    feedingHabits: 'Adaptable foragers that thrive on a diet of local greens, insects, and grains. Supplementary feeding improves performance.',
+    economicValue: 'Their meat fetches a premium price due to its superior taste. A good alternative to indigenous breeds with better growth rates.',
+    images: [
+        placeholderImages.find(img => img.id === 'sasso-1'),
+        placeholderImages.find(img => img.id === 'sasso-2'),
+    ].filter((img): img is ImagePlaceholder => !!img)
+  },
+  {
+    name: 'KARI Improved Kienyeji',
+    slug: 'kari-kienyeji',
+    description: 'An improved indigenous breed developed by KARI, offering higher productivity while retaining the hardiness of local chicken.',
+    overview: 'The KARI Improved Kienyeji is a result of selective breeding by the Kenya Agricultural and Livestock Research Organization. It matures faster, lays more eggs, and has a larger body than the original Kienyeji, while still being resistant to harsh conditions and common diseases.',
+    features: ['Higher productivity than local kienyeji', 'Retains natural hardiness and disease resistance', 'Good for both eggs and meat', 'Excellent foragers'],
+    stats: [
+      { key: 'Yield', value: '220-280', unit: 'eggs/year', icon: 'Egg' },
+      { key: 'Maturity', value: '5', unit: 'months', icon: 'Clock' },
+      { key: 'Weight', value: '2.0-2.5', unit: 'kg', icon: 'Scale' }
+    ],
+    suitableEnvironments: ['Free Range System', 'Semi-intensive', 'Arid Areas'],
+    feedingHabits: 'Thrives in a free-range or semi-free-range system. They are efficient in converting feed to meat and eggs.',
+    economicValue: 'Highly economical for small-scale farmers due to low maintenance costs and high production. Strong market demand.',
+    images: [
+        placeholderImages.find(img => img.id === 'kari-1'),
+        placeholderImages.find(img => img.id === 'kari-2'),
+    ].filter((img): img is ImagePlaceholder => !!img)
+  },
+  {
+    name: 'Rainbow Rooster',
+    slug: 'rainbow-rooster',
+    description: 'A multi-colored, dual-purpose breed from India, known for its fast growth and high egg production, suitable for backyard farming.',
+    overview: 'Rainbow Roosters are low-maintenance birds that look like indigenous chicken but have improved performance. They are bred to be hardy and can thrive on locally available feed, making them a cost-effective option for farmers.',
+    features: ['Multi-colored plumage', 'Fast growth rate', 'High egg-laying capacity', 'Resistant to poultry diseases'],
+    stats: [
+      { key: 'Yield', value: '180-200', unit: 'eggs/year', icon: 'Egg' },
+      { key: 'Maturity', value: '4.5-5', unit: 'months', icon: 'Clock' },
+      { key: 'Weight', value: '2.5-3.0', unit: 'kg', icon: 'Scale' }
+    ],
+    suitableEnvironments: ['Backyard Farming', 'Semi-intensive'],
+    feedingHabits: 'Good scavengers, can be sustained on kitchen waste, green fodder, and locally sourced grains, reducing commercial feed dependency.',
+    economicValue: 'Provides a steady income through both egg and meat sales. Its similarity in appearance and taste to local chicken gives it a market advantage.',
+    images: [
+        placeholderImages.find(img => img.id === 'rainbow-rooster-1'),
+        placeholderImages.find(img => img.id === 'rainbow-rooster-2'),
+    ].filter((img): img is ImagePlaceholder => !!img)
+  },
+  {
+    name: 'Isa Brown',
+    slug: 'isa-brown',
+    description: 'A leading hybrid breed for egg production. They are renowned for their high laying capacity, producing large brown eggs.',
+    overview: 'The Isa Brown is a hybrid type of chicken, not a true breed. It is a docile, reliable egg-layer, and one of the most popular choices for commercial and small-scale egg producers worldwide. They are not typically raised for meat due to their small frame.',
+    features: ['Exceptional egg layer', 'Docile and friendly temperament', 'Efficient feed-to-egg conversion rate', 'Specifically bred for egg production'],
+    stats: [
+      { key: 'Yield', value: '300-350', unit: 'eggs/year', icon: 'Egg' },
+      { key: 'Maturity', value: '4.5-5', unit: 'months', icon: 'Clock' },
+      { key: 'Weight', value: '1.8-2.2', unit: 'kg', icon: 'Scale' }
+    ],
+    suitableEnvironments: ['Intensive System', 'Battery Cages', 'Controlled Environments'],
+    feedingHabits: 'Requires a high-quality commercial layer feed to sustain its high production rate. Not suited for foraging-based systems.',
+    economicValue: 'Extremely profitable for egg production businesses due to the high volume of eggs. They are the workhorses of the egg industry.',
+    images: [
+        placeholderImages.find(img => img.id === 'isa-brown-1'),
+        placeholderImages.find(img => img.id === 'isa-brown-2'),
+    ].filter((img): img is ImagePlaceholder => !!img)
   }
 ];
 

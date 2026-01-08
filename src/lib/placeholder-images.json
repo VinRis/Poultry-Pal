@@ -9,25 +9,25 @@
     {
       "id": "learn-1",
       "description": "An educational image showing different types of chicken feed.",
-      "imageUrl": "https://images.unsplash.com/photo-1633119553201-c7b48d06a7e3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjaGlja2VuJTIwZmVlZHxlbnwwfHx8fDE3Njc3ODMzOTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1707879790624-9d85552d9aa3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjaGlja2VuJTIwZmVlZHxlbnwwfHx8fDE3Njc3ODMzOTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "chicken feed"
     },
     {
       "id": "kienyeji-1",
       "description": "Image of a Kienyeji chicken.",
-      "imageUrl": "https://images.unsplash.com/photo-1694267518713-0543ffa17166?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxraWVueWVqaSUyMGNoaWNrZW58ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1543856967-ea9a54fd46a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8a2llbnllamklMjBjaGlja2VufGVufDB8fHx8MTc2Nzg1NTY5OXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kienyeji chicken"
     },
     {
       "id": "kienyeji-2",
       "description": "Image of Kienyeji chicks.",
-      "imageUrl": "https://images.unsplash.com/photo-1728326853117-28d58ea8a8fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxraWVueWVqaSUyMGNoaWNrc3xlbnwwfHx8fDE3Njc4NjE4MzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1750008627695-64dbc79a0563?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxraWVueWVqaSUyMGNoaWNrc3xlbnwwfHx8fDE3Njc4NjE4MzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kienyeji chicks"
     },
     {
       "id": "kuroiler-1",
       "description": "Image of a Kuroiler chicken.",
-      "imageUrl": "https://images.unsplash.com/photo-1676984014290-c6d6f080f035?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxrdXJvaWxlciUyMGNoaWNrZW58ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1701488329812-ba65397f8e18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxrdXJvaWxlciUyMGNoaWNrZW58ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kuroiler chicken"
     },
     {
@@ -39,31 +39,79 @@
     {
       "id": "kenbro-1",
       "description": "Image of a Kenbro chicken.",
-      "imageUrl": "https://images.unsplash.com/photo-1701717447276-d10d32220d56?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8a2VuYnJvJTIwY2hpY2tlbnxlbnwwfHx8fDE3Njc4NTU2OTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1694267518713-0543ffa17166?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxrZW5icm8lMjBjaGlja2VufGVufDB8fHx8MTc2Nzg1NTY5OXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kenbro chicken"
     },
     {
       "id": "kenbro-2",
       "description": "Image of a group of Kenbro chickens.",
-      "imageUrl": "https://images.unsplash.com/photo-1728326853117-28d58ea8a8fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxrZW5icm8lMjBjaGlja2Vuc3xlbnwwfHx8fDE3Njc4NjE4MzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1663621038619-e29fc9320bb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxrZW5icm8lMjBjaGlja2Vuc3xlbnwwfHx8fDE3Njc4NjE4MzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kenbro chickens"
+    },
+    {
+      "id": "sasso-1",
+      "description": "Image of a Sasso chicken.",
+      "imageUrl": "https://images.unsplash.com/photo-1706543051894-879487d26f4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzYXNzbyUyMGNoaWNrZW58ZW58MHx8fHwxNzY3ODYyMTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sasso chicken"
+    },
+    {
+      "id": "sasso-2",
+      "description": "A group of sasso chickens.",
+      "imageUrl": "https://images.unsplash.com/photo-1728326853117-28d58ea8a8fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzYXNzbyUyMGNoaWNrZW5zfGVufDB8fHx8MTc2Nzg2MjE0N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sasso chickens"
+    },
+    {
+      "id": "kari-1",
+      "description": "Image of a KARI Improved Kienyeji chicken.",
+      "imageUrl": "https://images.unsplash.com/photo-1694267477609-c7adda82c9fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxLQVJJJTIwY2hpY2tlbnxlbnwwfHx8fDE3Njc4NjIxNDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "KARI chicken"
+    },
+    {
+      "id": "kari-2",
+      "description": "Image of KARI Improved Kienyeji chickens.",
+      "imageUrl": "https://images.unsplash.com/photo-1764060126485-46e72c85f1ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxLQVJJJTIwY2hpY2tlbnN8ZW58MHx8fHwxNzY3ODYyMTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "KARI chickens"
+    },
+    {
+      "id": "rainbow-rooster-1",
+      "description": "Image of a Rainbow Rooster.",
+      "imageUrl": "https://images.unsplash.com/photo-1519874745262-111511979775?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyYWluYm93JTIwcm9vc3RlcnxlbnwwfHx8fDE3Njc4NjIxNDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "rainbow rooster"
+    },
+    {
+      "id": "rainbow-rooster-2",
+      "description": "Image of Rainbow Rooster chickens.",
+      "imageUrl": "https://images.unsplash.com/photo-1708868304253-68ba2b1b590f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxyYWluYm93JTIwcm9vc3RlcnN8ZW58MHx8fHwxNzY3ODYyMTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "rainbow roosters"
+    },
+    {
+      "id": "isa-brown-1",
+      "description": "Image of an Isa Brown hen.",
+      "imageUrl": "https://images.unsplash.com/photo-1594097939304-bb70e1d2bd6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpc2ElMjBicm93biUyMGhlbnxlbnwwfHx8fDE3Njc4NjIxNDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "isa brown hen"
+    },
+    {
+      "id": "isa-brown-2",
+      "description": "Image of Isa Brown hens.",
+      "imageUrl": "https://picsum.photos/seed/isa-brown-2/600/400",
+      "imageHint": "isa brown hens"
     },
     {
       "id": "layers-1",
       "description": "Image of laying hens producing eggs.",
-      "imageUrl": "https://images.unsplash.com/photo-1659668093836-17337bf8e07b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsYXlpbmclMjBoZW5zfGVufDB8fHx8MTc2Nzg1NTY5OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1656082305048-1c52029110c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxsYXlpbmclMjBoZW5zfGVufDB8fHx8MTc2Nzg1NTY5OHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "laying hens"
     },
     {
       "id": "broilers-1",
       "description": "Image of broiler chickens.",
-      "imageUrl": "https://images.unsplash.com/photo-1723593611133-cb7124975d15?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxicm9pbGVyJTIwY2hpY2tlbnN8ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1728326853117-28d58ea8a8fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxicm9pbGVyJTIwY2hpY2tlbnN8ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "broiler chickens"
     },
     {
       "id": "diseases-1",
       "description": "Image related to poultry health.",
-      "imageUrl": "https://images.unsplash.com/photo-1730360023457-8e5829ff5c62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwb3VsdHJ5JTIwaGVhbHRofGVufDB8fHx8MTc2Nzg1NTY5OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1689356156837-6ddbf5776818?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwb3VsdHJ5JTIwaGVhbHRofGVufDB8fHx8MTc2Nzg1NTY5OHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "poultry health"
     }
   ]
