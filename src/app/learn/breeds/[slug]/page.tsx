@@ -71,7 +71,7 @@ export default function BreedDetailPage({ params }: { params: { slug: string } }
   ]
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-background min-h-screen">
       
       <main className="pb-32">
         <Carousel className="w-full">
@@ -123,7 +123,7 @@ export default function BreedDetailPage({ params }: { params: { slug: string } }
                     {breed.suitableEnvironments.map(env => {
                          const Icon = environmentIcons[env] || Globe;
                          return (
-                            <Badge key={env} variant="secondary" className="px-3 py-1.5 text-sm bg-green-100 text-green-800 border-green-200">
+                            <Badge key={env} variant="secondary" className="px-3 py-1.5 text-sm bg-green-100 text-green-800 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700/50">
                                 <Icon className="mr-2 h-4 w-4" />
                                 {env}
                             </Badge>
@@ -158,7 +158,7 @@ export default function BreedDetailPage({ params }: { params: { slug: string } }
         </div>
       </main>
       
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-gray-50/80 backdrop-blur-sm border-t z-50">
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/80 backdrop-blur-sm border-t z-50">
         <div className="flex gap-4 max-w-2xl mx-auto">
           <Button variant="outline" className="w-full h-14 text-base" asChild>
             <Link href="/diagnose">
