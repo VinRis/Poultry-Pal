@@ -278,3 +278,74 @@ export const broilersGuide = {
     }
   ]
 };
+
+export const feedsGuide = {
+  title: 'Feeds & Nutrition Guide',
+  introduction: 'Proper nutrition is the most important factor for growth and production. A balanced diet must provide energy, protein, vitamins, and minerals.',
+  sections: [
+    {
+      title: 'Energy Sources',
+      content: 'Carbohydrates are the primary energy source. Maize (corn), wheat, and barley are excellent energy feeds. They should form the bulk of the diet.',
+    },
+    {
+      title: 'Protein Sources',
+      content: 'Proteins are essential for growth and egg production. Common sources include fish meal (omena), soybean meal, and sunflower seed cake.',
+    },
+    {
+      title: 'Vitamins & Minerals',
+      content: 'These are crucial for health and disease resistance. Commercial feeds are pre-mixed with necessary vitamins and minerals. For homemade rations, a vitamin-mineral premix is essential.',
+    },
+    {
+      title: 'Water',
+      content: 'Clean, fresh water is the most important nutrient. A chicken drinks about twice the weight of feed it consumes. Always ensure water is available.',
+    }
+  ],
+};
+
+export const housingGuide = {
+  title: 'Housing & Equipment Guide',
+  introduction: 'A good poultry house protects birds from predators, theft, and harsh weather, while providing a comfortable environment for growth and laying.',
+  sections: [
+    {
+      title: 'Siting the Coop',
+      content: 'Build the coop on a well-drained site, oriented East-West to minimize direct sun exposure. It should be away from residential houses to control noise and smell.',
+    },
+    {
+      title: 'Space Requirements',
+      content: 'Overcrowding leads to stress and disease. Provide at least 2 sq. ft. per layer and 1 sq. ft. per broiler in deep litter systems. More space is needed for free-range systems.',
+    },
+    {
+      title: 'Ventilation',
+      content: 'Good airflow is critical to remove moisture, ammonia, and heat. Use wire mesh on the upper part of the walls to ensure cross-ventilation while keeping predators out.',
+    },
+    {
+      title: 'Essential Equipment',
+      content: 'You will need feeders, waterers, perches for layers, and nesting boxes. Choose equipment that is easy to clean and minimizes feed and water wastage.',
+    }
+  ],
+};
+
+export const biosecurityGuide = {
+  title: 'Biosecurity Basics',
+  introduction: 'Biosecurity refers to all measures taken to prevent the introduction and spread of diseases in your flock. It is the cheapest and most effective means of disease control.',
+  sections: [
+    {
+      title: 'Isolate Your Flock',
+      content: 'Keep your chickens away from other birds, including wild birds and neighboring flocks. A fence is the first line of defense. Quarantine new or returning birds for at least 30 days.',
+    },
+    {
+      title: 'Control Traffic',
+      content: 'Limit visitors to your farm. Provide a footbath with disinfectant at the entrance of the coop for anyone entering. Use dedicated footwear for the poultry unit.',
+    },
+    {
+      title: 'Cleanliness',
+      content: 'Clean and disinfect the poultry house, feeders, and waterers regularly. Remove manure and damp litter promptly. Control rodents and insects as they can carry diseases.',
+    },
+    {
+      title: 'Source & Dispose',
+      content: 'Buy chicks only from reputable, disease-free sources. Dispose of dead birds properly and immediately, either by burying or incineration, away from the flock.',
+    }
+  ],
+};
+
+    
