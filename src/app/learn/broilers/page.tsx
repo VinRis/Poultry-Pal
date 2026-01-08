@@ -119,7 +119,7 @@ export default function BroilersPage() {
                             <AccordionContent className="pl-16">
                                 <ul className="list-disc list-outside space-y-2 ml-4">
                                     {item.details.map((detail, i) => (
-                                       <li key={i} dangerouslySetInnerHTML={{ __html: detail }}></li>
+                                       <li key={i} dangerouslySetInnerHTML={{ __html: detail.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}></li>
                                     ))}
                                 </ul>
                             </AccordionContent>
