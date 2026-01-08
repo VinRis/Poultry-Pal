@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, useActionState } from 'react';
-import { useFormStatus } from 'react-dom';
+import { useState, useRef, useEffect, useTransition } from 'react';
 import Image from 'next/image';
 import {
   Upload,
@@ -16,7 +15,7 @@ import {
   AlertTriangle,
   Info
 } from 'lucide-react';
-import { handleDiagnosis } from './actions';
+import { handleDiagnosis, type FormState } from './actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -26,10 +25,10 @@ import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
 
 function SubmitButton() {
-  const { pending } = useFormStatus();
+  const [isPending, startTransition] = useTransition();
   return (
-    <Button type="submit" disabled={pending} className="w-full">
-      {pending ? (
+    <Button type="submit" disabled={isPending} className="w-full">
+      {isPending ? (
         <>
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
           Diagnosing...
@@ -76,7 +75,8 @@ function resizeImage(file: File, callback: (dataUrl: string) => void) {
 }
 
 export default function Diagnosis() {
-  const [state, formAction] = useActionState(handleDiagnosis, null);
+  const [state, setState] = useState<FormState>(null);
+  const [isPending, startTransition] = useTransition();
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [imageDataUri, setImageDataUri] = useState<string>('');
   const [hasCameraPermission, setHasCameraPermission] = useState<boolean | null>(null);
@@ -86,6 +86,15 @@ export default function Diagnosis() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
+
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const performDiagnosis = (formData: FormData) => {
+    startTransition(async () => {
+        const newState = await handleDiagnosis(state, formData);
+        setState(newState);
+    });
+  };
 
   useEffect(() => {
     if (state?.success === false && state.message) {
@@ -225,7 +234,7 @@ export default function Diagnosis() {
           </Alert>
         </CardContent>
         <CardFooter>
-            <form action={formAction} className="w-full">
+            <form action={() => setState(null)} className="w-full">
                 <Button type="submit" variant="outline" className="w-full">Start New Diagnosis</Button>
             </form>
         </CardFooter>
@@ -235,7 +244,7 @@ export default function Diagnosis() {
 
   return (
     <div className="space-y-8">
-      <form action={formAction}>
+      <form ref={formRef} action={performDiagnosis}>
         <Card className="w-full">
           <input type="hidden" name="photoDataUri" value={imageDataUri} />
           <CardContent className="p-6">
@@ -264,7 +273,19 @@ export default function Diagnosis() {
                       <X className="h-4 w-4" />
                   </Button>
                 </div>
-                <SubmitButton />
+                <Button type="submit" disabled={isPending} className="w-full">
+                  {isPending ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Diagnosing...
+                    </>
+                  ) : (
+                    <>
+                      <Wand2 className="mr-2 h-4 w-4" />
+                      Get Diagnosis
+                    </>
+                  )}
+                </Button>
               </div>
             ) : (
               <div className="text-center p-8 border-2 border-dashed border-border rounded-lg space-y-4">
