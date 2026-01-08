@@ -47,28 +47,28 @@ export default function LearnPage() {
       title: 'Feeds & Nutrition',
       description: 'A guide to balanced diets',
       icon: <Wheat className="w-5 h-5" />,
-      href: '#', // TBD
+      href: '/learn/feeds',
       image: placeholderImages.find(img => img.id === 'feeds-1'),
     },
     {
       title: 'Housing & Equipment',
       description: 'Best practices for coops and gear',
       icon: <Home className="w-5 h-5" />,
-      href: '#', // TBD
+      href: '/learn/housing',
       image: placeholderImages.find(img => img.id === 'housing-1'),
     },
     {
       title: 'Chick Brooding',
       description: 'Essential care for young chicks',
       icon: <Baby className="w-5 h-5" />,
-      href: '#', // TBD
+      href: '/learn/brooding',
       image: placeholderImages.find(img => img.id === 'brooding-1'),
     },
     {
       title: 'Biosecurity Basics',
       description: 'How to protect your flock',
       icon: <ShieldCheck className="w-5 h-5" />,
-      href: '#', // TBD
+      href: '/learn/biosecurity',
       image: placeholderImages.find(img => img.id === 'biosecurity-1'),
     },
   ];
@@ -112,5 +112,3 @@ export default function LearnPage() {
     </div>
   );
 }
-
-    

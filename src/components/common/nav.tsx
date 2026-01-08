@@ -31,6 +31,10 @@ const getPageTitle = (pathname: string) => {
     if (pathname.startsWith('/learn/diseases')) return 'Disease Library';
     if (pathname.startsWith('/learn/layers')) return 'Rearing Layers';
     if (pathname.startsWith('/learn/broilers')) return 'Rearing Broilers';
+    if (pathname.startsWith('/learn/feeds')) return 'Feeds & Nutrition';
+    if (pathname.startsWith('/learn/housing')) return 'Housing & Equipment';
+    if (pathname.startsWith('/learn/brooding')) return 'Chick Brooding';
+    if (pathname.startsWith('/learn/biosecurity')) return 'Biosecurity Basics';
     if (pathname.startsWith('/learn')) return 'Learning Hub';
     return 'Poultry Pal';
 }
@@ -57,7 +61,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
    const pathname = usePathname();
    const router = useRouter();
    const title = getPageTitle(pathname);
-   const isSubPage = pathname.startsWith('/learn/breeds/');
+   const isSubPage = pathname.includes('/learn/') && pathname.split('/').length > 3;
    const isHomePage = pathname === '/';
 
   return (
