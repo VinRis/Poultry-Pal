@@ -19,6 +19,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { placeholderImages } from '@/lib/placeholder-data';
 import { Badge } from '@/components/ui/badge';
 import Logo from '@/components/common/logo';
+import InstallPwa from '@/components/common/install-pwa';
 
 export default function Home() {
   const heroImage = placeholderImages.find((img) => img.id === 'hero-1');
@@ -124,7 +125,7 @@ export default function Home() {
             ))}
           </div>
         </section>
-
+        <InstallPwa />
       </main>
     </div>
   );

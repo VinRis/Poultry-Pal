@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/components/common/theme-provider';
 export const metadata: Metadata = {
   title: 'Poultry Pal',
   description: 'Learn about poultry farming and diagnose chicken diseases.',
+  manifest: '/manifest.json',
 };
 
 export default function RootLayout({
