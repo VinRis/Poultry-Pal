@@ -113,7 +113,7 @@ export default function Diagnosis() {
     const startCamera = async () => {
         if (isCameraOpen) {
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
                 setHasCameraPermission(true);
                 streamRef.current = stream;
                 if (videoRef.current) {
