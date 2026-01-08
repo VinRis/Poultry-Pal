@@ -103,6 +103,7 @@ export default function Diagnosis() {
       if (stream && typeof stream.getTracks === 'function') {
         stream.getTracks().forEach(track => track.stop());
       }
+      videoRef.current.srcObject = null;
     }
     setIsCameraOpen(false);
   }
@@ -117,7 +118,7 @@ export default function Diagnosis() {
     }
     if (state?.success === true) {
       handleRemoveImage();
-      setIsCameraOpen(false);
+      closeCamera();
     }
   }, [state, toast]);
 
@@ -148,6 +149,9 @@ export default function Diagnosis() {
 
   const openCamera = async () => {
     try {
+      // Close any existing camera stream first
+      closeCamera();
+
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       setHasCameraPermission(true);
       setIsCameraOpen(true);
@@ -177,12 +181,13 @@ export default function Diagnosis() {
       context?.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
       const dataUrl = canvas.toDataURL('image/jpeg');
       
-      // Set state first
       setPreviewUrl(dataUrl);
       setImageDataUri(dataUrl);
-      
-      // Then close the camera
-      closeCamera();
+
+      // Delay closing camera to allow state to update
+      setTimeout(() => {
+        closeCamera();
+      }, 100);
     }
   };
 
@@ -379,3 +384,5 @@ export default function Diagnosis() {
     </div>
   );
 }
+
+    
