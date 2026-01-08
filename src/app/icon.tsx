@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og';
+import Logo from '@/components/common/logo';
 
 export const runtime = 'edge';
 export const size = {
@@ -12,19 +13,22 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 22,
-          background: '#32CD32',
+          background: 'hsl(94 84% 43%)',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: 'white',
           borderRadius: 6,
-          fontWeight: 'bold',
         }}
       >
-        P
+        <Logo
+          style={{
+            width: '75%',
+            height: '75%',
+            stroke: 'white',
+          }}
+        />
       </div>
     ),
     {
