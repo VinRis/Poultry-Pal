@@ -84,6 +84,7 @@ export default function Diagnosis() {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   
   const videoRef = useRef<HTMLVideoElement>(null);
+  const streamRef = useRef<MediaStream | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
@@ -98,15 +99,50 @@ export default function Diagnosis() {
   };
 
   const closeCamera = () => {
-    if (videoRef.current?.srcObject) {
-      const stream = videoRef.current.srcObject as MediaStream;
-      if (stream && typeof stream.getTracks === 'function') {
-        stream.getTracks().forEach(track => track.stop());
-      }
-      videoRef.current.srcObject = null;
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current = null;
+    }
+    if (videoRef.current) {
+        videoRef.current.srcObject = null;
     }
     setIsCameraOpen(false);
   }
+
+  useEffect(() => {
+    const startCamera = async () => {
+        if (isCameraOpen) {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                setHasCameraPermission(true);
+                streamRef.current = stream;
+                if (videoRef.current) {
+                    videoRef.current.srcObject = stream;
+                }
+            } catch (error) {
+                console.error('Error accessing camera:', error);
+                setHasCameraPermission(false);
+                setIsCameraOpen(false);
+                toast({
+                    variant: 'destructive',
+                    title: 'Camera Access Denied',
+                    description: 'Please enable camera permissions in your browser settings.',
+                });
+            }
+        }
+    };
+
+    startCamera();
+
+    // Cleanup function to close the camera when the component unmounts or isCameraOpen becomes false
+    return () => {
+        if (streamRef.current) {
+            streamRef.current.getTracks().forEach(track => track.stop());
+            streamRef.current = null;
+        }
+    };
+}, [isCameraOpen, toast]);
+
 
   useEffect(() => {
     if (state?.success === false && state.message) {
@@ -121,13 +157,6 @@ export default function Diagnosis() {
       closeCamera();
     }
   }, [state, toast]);
-
-  useEffect(() => {
-    return () => {
-      // Ensure camera is closed on component unmount
-      closeCamera();
-    };
-  }, []);
   
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -147,47 +176,43 @@ export default function Diagnosis() {
     }
   };
 
-  const openCamera = async () => {
-    try {
-      // Close any existing camera stream first
-      closeCamera();
-
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      setHasCameraPermission(true);
-      setIsCameraOpen(true);
-      setPreviewUrl(null); // Clear previous preview
-      setImageDataUri('');
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-      }
-    } catch (error) {
-      console.error('Error accessing camera:', error);
-      setHasCameraPermission(false);
-      toast({
-        variant: 'destructive',
-        title: 'Camera Access Denied',
-        description: 'Please enable camera permissions in your browser settings.',
-      });
-    }
+  const openCamera = () => {
+    closeCamera(); // Ensure any existing stream is stopped
+    setPreviewUrl(null);
+    setImageDataUri('');
+    setIsCameraOpen(true);
   };
 
   const takePicture = () => {
     if (videoRef.current && canvasRef.current) {
       const video = videoRef.current;
       const canvas = canvasRef.current;
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
+      
+      const MAX_PREVIEW_SIZE = 512;
+      let { videoWidth: width, videoHeight: height } = video;
+      
+      if (width > height) {
+        if (width > MAX_PREVIEW_SIZE) {
+          height *= MAX_PREVIEW_SIZE / width;
+          width = MAX_PREVIEW_SIZE;
+        }
+      } else {
+        if (height > MAX_PREVIEW_SIZE) {
+          width *= MAX_PREVIEW_SIZE / height;
+          height = MAX_PREVIEW_SIZE;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+
       const context = canvas.getContext('2d');
-      context?.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+      context?.drawImage(video, 0, 0, width, height);
       const dataUrl = canvas.toDataURL('image/jpeg');
       
       setPreviewUrl(dataUrl);
       setImageDataUri(dataUrl);
-
-      // Delay closing camera to allow state to update
-      setTimeout(() => {
-        closeCamera();
-      }, 100);
+      closeCamera();
     }
   };
 
