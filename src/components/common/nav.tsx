@@ -3,20 +3,9 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Home, Stethoscope, Menu, User, BookOpen, Settings } from 'lucide-react';
-
-import {
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-  SidebarContent,
-  SidebarTrigger,
-  Sidebar,
-  SidebarProvider,
-  SidebarInset,
-} from '@/components/ui/sidebar';
 import Logo from './logo';
 import { cn } from '@/lib/utils';
+import { Button } from '../ui/button';
 
 const navItems = [
   { href: '/', label: 'Home', icon: Home },
@@ -25,9 +14,22 @@ const navItems = [
   { href: '/settings', label: 'Settings', icon: Settings },
 ];
 
+const getPageTitle = (pathname: string) => {
+    if (pathname === '/') return 'Home';
+    if (pathname.startsWith('/diagnose')) return 'Diagnosis';
+    if (pathname.startsWith('/learn/breeds/')) return 'Breed Details';
+    if (pathname.startsWith('/learn/breeds')) return 'Poultry Breeds';
+    if (pathname.startsWith('/learn/diseases')) return 'Disease Library';
+    if (pathname.startsWith('/learn/layers')) return 'Rearing Layers';
+    if (pathname.startsWith('/learn/broilers')) return 'Rearing Broilers';
+    if (pathname.startsWith('/learn')) return 'Learning Hub';
+    if (pathname.startsWith('/settings')) return 'Settings';
+    return 'Poultry Pal';
+}
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
    const pathname = usePathname();
+   const title = getPageTitle(pathname);
 
   return (
     <>
@@ -37,7 +39,12 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
           rel="stylesheet"
         />
-        <div className="font-body antialiased pb-20">
+        <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            <div className="container flex h-14 items-center max-w-2xl">
+                 <h1 className="text-xl font-bold">{title}</h1>
+            </div>
+        </header>
+        <div className="font-body antialiased pb-24">
           {children}
         </div>
         <div className="fixed bottom-0 left-0 right-0 bg-background border-t z-50">
@@ -58,48 +65,4 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         </div>
     </>
   )
-}
-
-export default function Nav() {
-  const pathname = usePathname();
-
-  return (
-    <>
-      <SidebarHeader>
-        <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center gap-2 font-headline text-lg font-semibold text-sidebar-foreground">
-            <Logo className="w-8 h-8 text-primary" />
-            <span className='group-data-[collapsible=icon]:hidden'>Poultry Pal</span>
-          </Link>
-          <div className="flex-1" />
-          <SidebarTrigger className="group-data-[collapsible=icon]:hidden" />
-          <SidebarTrigger className="md:hidden">
-            <Menu />
-          </SidebarTrigger>
-        </div>
-      </SidebarHeader>
-
-      <SidebarContent>
-        <SidebarMenu>
-          {navItems.map((item) => (
-            <SidebarMenuItem key={item.href}>
-              <Link href={item.href}>
-                <SidebarMenuButton
-                  isActive={
-                    item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
-                  }
-                  tooltip={{
-                    children: item.label,
-                  }}
-                >
-                  <item.icon />
-                  <span>{item.label}</span>
-                </SidebarMenuButton>
-              </Link>
-            </SidebarMenuItem>
-          ))}
-        </SidebarMenu>
-      </SidebarContent>
-    </>
-  );
 }

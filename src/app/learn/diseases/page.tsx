@@ -101,18 +101,6 @@ export default function DiseasesPage() {
 
   return (
     <div className="bg-gray-50 dark:bg-background min-h-screen">
-      <header className="bg-gray-50/90 dark:bg-background/90 backdrop-blur-sm sticky top-0 z-40 p-4 flex items-center justify-between">
-        <Button variant="ghost" size="icon" onClick={() => router.back()}>
-          <ArrowLeft />
-        </Button>
-        <h1 className="text-xl font-bold">Disease Library</h1>
-        <Button variant="ghost" size="icon" asChild>
-          <Link href="/settings">
-            <Settings />
-          </Link>
-        </Button>
-      </header>
-
       <main className="p-4 space-y-6 pb-32">
         <div className="flex items-center gap-2 text-sm text-green-600 bg-green-50 border border-green-200 rounded-full px-4 py-2 self-start mx-auto">
           <CheckCircle className="w-4 h-4" />
@@ -229,7 +217,7 @@ export default function DiseasesPage() {
 
       </main>
 
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+      <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50">
         <Button asChild size="lg" className="bg-green-500 hover:bg-green-600 text-white rounded-full !px-8 !py-6 text-lg font-bold shadow-lg">
             <Link href="/diagnose">
                 <Camera className="mr-3" />

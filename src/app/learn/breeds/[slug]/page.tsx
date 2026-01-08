@@ -71,7 +71,7 @@ export default function BreedDetailPage({ params }: { params: { slug: string } }
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      <header className="bg-gray-50/90 backdrop-blur-sm sticky top-0 z-40 p-4 flex items-center justify-between">
+       <header className="bg-gray-50/90 backdrop-blur-sm sticky top-0 z-40 p-2 flex items-center justify-between">
         <Button variant="ghost" size="icon" onClick={() => router.back()}>
           <ArrowLeft />
         </Button>

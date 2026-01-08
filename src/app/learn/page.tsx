@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Feather, Bug, Egg, Drumstick, ArrowRight, BookOpen } from 'lucide-react';
-import PageHeader from '@/components/common/page-header';
 import { Card, CardDescription, CardHeader, CardTitle, CardFooter, CardContent } from '@/components/ui/card';
 import { placeholderImages } from '@/lib/placeholder-data';
 import { Button } from '@/components/ui/button';
@@ -40,12 +39,9 @@ export default function LearnPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <PageHeader
-        title="Learning Hub"
-        description="Expand your knowledge on poultry farming."
-      />
+      <p className="text-lg text-muted-foreground text-center mb-8">Expand your knowledge on poultry farming.</p>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
         {modules.map((mod) => (
           <Card key={mod.title} className="overflow-hidden group">
             <Link href={mod.href}>

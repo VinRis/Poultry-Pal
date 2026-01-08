@@ -1,4 +1,3 @@
-import PageHeader from '@/components/common/page-header';
 import { broilersGuide, placeholderImages } from '@/lib/placeholder-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Thermometer, Utensils, Home, Shield } from 'lucide-react';
@@ -15,11 +14,7 @@ export default function BroilersPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <PageHeader
-        title={broilersGuide.title}
-        description={broilersGuide.introduction}
-        showBackButton={true}
-      />
+       <p className="text-lg text-muted-foreground text-center">{broilersGuide.introduction}</p>
 
        {image &&
         <div className="relative h-64 w-full my-8 rounded-lg overflow-hidden">

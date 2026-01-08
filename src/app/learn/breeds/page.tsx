@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import PageHeader from '@/components/common/page-header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { breeds } from '@/lib/placeholder-data';
 import { Button } from '@/components/ui/button';
@@ -9,13 +8,9 @@ import { ArrowRight, ChevronRight } from 'lucide-react';
 export default function BreedsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <PageHeader
-        title="Poultry Breeds"
-        description="Discover local and improved breeds suitable for farming in East Africa."
-        showBackButton={true}
-      />
+       <p className="text-lg text-muted-foreground text-center mb-8">Discover local and improved breeds suitable for farming in East Africa.</p>
 
-      <div className="mt-8 space-y-4">
+      <div className="space-y-4">
         {breeds.map((breed) => (
           <Link href={`/learn/breeds/${breed.slug}`} key={breed.name}>
             <Card className="overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1">

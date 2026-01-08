@@ -1,4 +1,3 @@
-import PageHeader from '@/components/common/page-header';
 import { layersGuide, placeholderImages } from '@/lib/placeholder-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Lightbulb, Home, Utensils, Egg } from 'lucide-react';
@@ -15,11 +14,7 @@ export default function LayersPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <PageHeader
-        title={layersGuide.title}
-        description={layersGuide.introduction}
-        showBackButton={true}
-      />
+       <p className="text-lg text-muted-foreground text-center">{layersGuide.introduction}</p>
       
       {image &&
         <div className="relative h-64 w-full my-8 rounded-lg overflow-hidden">

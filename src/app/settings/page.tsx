@@ -2,7 +2,6 @@
 
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import PageHeader from '@/components/common/page-header';
 import {
   Card,
   CardContent,
@@ -24,12 +23,6 @@ export default function SettingsPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-2xl">
-      <PageHeader
-        title="Settings"
-        description="Manage your app preferences."
-        showBackButton={true}
-      />
-
       <div className="mt-8 space-y-6">
         <Card>
           <CardHeader>
