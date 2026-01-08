@@ -61,7 +61,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
    const pathname = usePathname();
    const router = useRouter();
    const title = getPageTitle(pathname);
-   const isSubPage = pathname.includes('/learn/') && pathname.split('/').length > 3;
+   const isSubPage = !navItems.some(item => item.href === pathname);
    const isHomePage = pathname === '/';
 
   return (
