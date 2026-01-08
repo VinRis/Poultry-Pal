@@ -4,6 +4,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   ArrowLeft,
   Settings,
@@ -61,6 +62,7 @@ export default function DiseasesPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedDisease, setSelectedDisease] = useState<Disease | null>(null);
+  const router = useRouter();
   
   const filters = ['All', 'Viral', 'Bacterial', 'Parasitic'];
 
@@ -80,7 +82,7 @@ export default function DiseasesPage() {
   return (
     <div className="bg-gray-50 min-h-screen">
       <header className="bg-gray-50/90 backdrop-blur-sm sticky top-0 z-40 p-4 flex items-center justify-between">
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon" onClick={() => router.back()}>
           <ArrowLeft />
         </Button>
         <h1 className="text-xl font-bold">Disease Library</h1>
