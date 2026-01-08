@@ -75,6 +75,27 @@ function resizeImage(file: File, callback: (dataUrl: string) => void) {
   reader.readAsDataURL(file);
 }
 
+type DiagnosisResult = NonNullable<FormState>['result'];
+
+type DiagnosisHistoryItem = {
+  disease: string;
+  date: string;
+  confidence: string;
+  confidenceValue: number;
+};
+
+const getConfidenceString = (value: number) => {
+  if (value > 0.75) return 'High';
+  if (value > 0.4) return 'Medium';
+  return 'Low';
+}
+
+const getStatusIcon = (confidence: string) => {
+  if (confidence === 'High') return <AlertTriangle className="text-destructive" />;
+  if (confidence === 'Medium') return <Info className="text-yellow-500" />;
+  return <Info className="text-green-500" />;
+}
+
 export default function Diagnosis() {
   const [state, setState] = useState<FormState>(null);
   const [isPending, startTransition] = useTransition();
@@ -86,11 +107,25 @@ export default function Diagnosis() {
   const { toast } = useToast();
 
   const formRef = useRef<HTMLFormElement>(null);
+  
+  const [diagnosesHistory, setDiagnosesHistory] = useState<DiagnosisHistoryItem[]>([
+    { disease: 'Newcastle Disease', date: 'Yesterday', confidence: 'High', confidenceValue: 0.8 },
+    { disease: 'Coccidiosis', date: '2 days ago', confidence: 'Medium', confidenceValue: 0.6 },
+  ]);
 
   const performDiagnosis = (formData: FormData) => {
     startTransition(async () => {
         const newState = await handleDiagnosis(state, formData);
         setState(newState);
+        if (newState?.success && newState.result) {
+            const newEntry: DiagnosisHistoryItem = {
+                disease: newState.result.possibleDiseases[0]?.name || 'Unknown',
+                date: new Date().toLocaleDateString(undefined, { day: 'numeric', month: 'short' }),
+                confidence: getConfidenceString(newState.result.confidenceLevel),
+                confidenceValue: newState.result.confidenceLevel,
+            };
+            setDiagnosesHistory(prev => [newEntry, ...prev]);
+        }
     });
   };
 
@@ -132,11 +167,6 @@ export default function Diagnosis() {
     { icon: GitCompare, title: 'Multiple Angles', description: 'Try different angles if unsure.' },
   ];
   
-  const recentDiagnoses = [
-    { disease: 'Newcastle Disease', date: 'Yesterday', confidence: 'High', statusIcon: <AlertTriangle className="text-destructive" /> },
-    { disease: 'Coccidiosis', date: '2 days ago', confidence: 'Medium', statusIcon: <Info className="text-yellow-500" /> },
-  ]
-
   if (state?.success && state.result) {
     return (
       <Card className="w-full">
@@ -289,15 +319,15 @@ export default function Diagnosis() {
           <Button variant="link">See All</Button>
         </div>
         <div className="space-y-2">
-          {recentDiagnoses.map((item) => (
-            <Card key={item.disease} className="p-4 flex items-center justify-between">
+          {diagnosesHistory.map((item, index) => (
+            <Card key={index} className="p-4 flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <div>
                   <p className="font-semibold">{item.disease}</p>
                   <p className="text-sm text-muted-foreground">{item.date} • {item.confidence} Confidence</p>
                 </div>
               </div>
-              <div>{item.statusIcon}</div>
+              <div>{getStatusIcon(item.confidence)}</div>
             </Card>
           ))}
         </div>
@@ -311,7 +341,3 @@ export default function Diagnosis() {
     </div>
   );
 }
-
-    
-
-    
