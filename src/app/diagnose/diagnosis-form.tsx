@@ -31,6 +31,40 @@ function SubmitButton() {
   );
 }
 
+const MAX_IMAGE_SIZE = 512; // Max width or height in pixels
+
+function resizeImage(file: File, callback: (dataUrl: string) => void) {
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const img = document.createElement('img');
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      let { width, height } = img;
+
+      if (width > height) {
+        if (width > MAX_IMAGE_SIZE) {
+          height *= MAX_IMAGE_SIZE / width;
+          width = MAX_IMAGE_SIZE;
+        }
+      } else {
+        if (height > MAX_IMAGE_SIZE) {
+          width *= MAX_IMAGE_SIZE / height;
+          height = MAX_IMAGE_SIZE;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx?.drawImage(img, 0, 0, width, height);
+      callback(canvas.toDataURL('image/jpeg'));
+    };
+    img.src = event.target?.result as string;
+  };
+  reader.readAsDataURL(file);
+}
+
+
 export default function DiagnosisForm() {
   const [state, formAction] = useActionState(handleDiagnosis, null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -52,12 +86,10 @@ export default function DiagnosisForm() {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewUrl(reader.result as string);
-        setImageDataUri(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      resizeImage(file, (resizedDataUrl) => {
+        setPreviewUrl(resizedDataUrl);
+        setImageDataUri(resizedDataUrl);
+      });
     }
   };
 
@@ -110,7 +142,7 @@ export default function DiagnosisForm() {
                 <div className="text-center text-muted-foreground">
                   <Upload className="mx-auto h-12 w-12" />
                   <p className="mt-2">Click to upload or drag and drop</p>
-                  <p className="text-xs">PNG, JPG, GIF up to 10MB</p>
+                  <p className="text-xs">PNG, JPG, GIF</p>
                 </div>
               )}
             </div>
