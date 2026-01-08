@@ -8,13 +8,13 @@ import Logo from './logo';
 import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 import { breeds } from '@/lib/placeholder-data';
+import { ThemeToggle } from './theme-toggle';
 
 
 const navItems = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/diagnose', label: 'Diagnosis', icon: Stethoscope },
   { href: '/learn', label: 'Learn', icon: BookOpen },
-  { href: '/settings', label: 'Settings', icon: Settings },
 ];
 
 const getPageTitle = (pathname: string) => {
@@ -31,7 +31,6 @@ const getPageTitle = (pathname: string) => {
     if (pathname.startsWith('/learn/layers')) return 'Rearing Layers';
     if (pathname.startsWith('/learn/broilers')) return 'Rearing Broilers';
     if (pathname.startsWith('/learn')) return 'Learning Hub';
-    if (pathname.startsWith('/settings')) return 'Settings';
     return 'Poultry Pal';
 }
 
@@ -40,19 +39,16 @@ const HeaderActions = () => {
     
     if (pathname.startsWith('/learn/breeds/')) {
         return (
-            <Button variant="ghost" size="icon">
-                <Bookmark />
-            </Button>
+            <div className="flex items-center gap-2">
+                <Button variant="ghost" size="icon">
+                    <Bookmark />
+                </Button>
+                <ThemeToggle />
+            </div>
         )
     }
 
-    return (
-        <Button variant="ghost" size="icon" asChild>
-            <Link href="/settings">
-                <User />
-            </Link>
-        </Button>
-    )
+    return <ThemeToggle />
 }
 
 
@@ -60,7 +56,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
    const pathname = usePathname();
    const router = useRouter();
    const title = getPageTitle(pathname);
-   const isSubPage = pathname.startsWith('/learn/breeds/') || pathname === '/settings';
+   const isSubPage = pathname.startsWith('/learn/breeds/');
    const isHomePage = pathname === '/';
 
   return (
@@ -92,7 +88,6 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
             <div className="flex justify-around items-center p-2 container max-w-2xl">
               {navItems.map((item) => {
                   const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
-                  if (item.href === '/settings') return null;
                   return (
                     <Link key={item.href} href={item.href} className={cn(
                         "flex flex-col items-center gap-1 p-2 rounded-md transition-colors w-20",
