@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import Image from 'next/image';
@@ -71,16 +72,7 @@ export default function BreedDetailPage({ params }: { params: { slug: string } }
 
   return (
     <div className="bg-gray-50 min-h-screen">
-       <header className="bg-gray-50/90 backdrop-blur-sm sticky top-0 z-40 p-2 flex items-center justify-between">
-        <Button variant="ghost" size="icon" onClick={() => router.back()}>
-          <ArrowLeft />
-        </Button>
-        <h1 className="text-xl font-bold truncate">{breed.name}</h1>
-        <Button variant="ghost" size="icon">
-          <Bookmark />
-        </Button>
-      </header>
-
+      
       <main className="pb-32">
         <Carousel className="w-full">
           <CarouselContent>

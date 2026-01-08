@@ -1,11 +1,14 @@
+
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Home, Stethoscope, Menu, User, BookOpen, Settings } from 'lucide-react';
+import { Home, Stethoscope, Menu, User, BookOpen, Settings, ArrowLeft, Bookmark } from 'lucide-react';
 import Logo from './logo';
 import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
+import { breeds } from '@/lib/placeholder-data';
+
 
 const navItems = [
   { href: '/', label: 'Home', icon: Home },
@@ -15,9 +18,14 @@ const navItems = [
 ];
 
 const getPageTitle = (pathname: string) => {
-    if (pathname === '/') return 'Home';
+    if (pathname === '/') return 'Poultry Pal';
     if (pathname.startsWith('/diagnose')) return 'Diagnosis';
-    if (pathname.startsWith('/learn/breeds/')) return 'Breed Details';
+
+    if (pathname.startsWith('/learn/breeds/')) {
+        const slug = pathname.split('/').pop();
+        const breed = breeds.find(b => b.slug === slug);
+        return breed ? breed.name : 'Breed Details';
+    }
     if (pathname.startsWith('/learn/breeds')) return 'Poultry Breeds';
     if (pathname.startsWith('/learn/diseases')) return 'Disease Library';
     if (pathname.startsWith('/learn/layers')) return 'Rearing Layers';
@@ -27,9 +35,33 @@ const getPageTitle = (pathname: string) => {
     return 'Poultry Pal';
 }
 
+const HeaderActions = () => {
+    const pathname = usePathname();
+    
+    if (pathname.startsWith('/learn/breeds/')) {
+        return (
+            <Button variant="ghost" size="icon">
+                <Bookmark />
+            </Button>
+        )
+    }
+
+    return (
+        <Button variant="ghost" size="icon" asChild>
+            <Link href="/settings">
+                <User />
+            </Link>
+        </Button>
+    )
+}
+
+
 export function AppLayout({ children }: { children: React.ReactNode }) {
    const pathname = usePathname();
+   const router = useRouter();
    const title = getPageTitle(pathname);
+   const isSubPage = pathname.startsWith('/learn/breeds/') || pathname === '/settings';
+   const isHomePage = pathname === '/';
 
   return (
     <>
@@ -40,8 +72,17 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           rel="stylesheet"
         />
         <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-14 items-center max-w-2xl">
-                 <h1 className="text-xl font-bold">{title}</h1>
+            <div className="container flex h-14 items-center justify-between max-w-2xl">
+                <div className='flex items-center gap-2'>
+                    {isSubPage && (
+                        <Button variant="ghost" size="icon" onClick={() => router.back()}>
+                            <ArrowLeft />
+                        </Button>
+                    )}
+                    {isHomePage && <Logo className="h-7 w-7 text-primary" />}
+                    <h1 className="text-xl font-bold">{title}</h1>
+                </div>
+                <HeaderActions />
             </div>
         </header>
         <div className="font-body antialiased pb-24">
@@ -51,6 +92,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
             <div className="flex justify-around items-center p-2 container max-w-2xl">
               {navItems.map((item) => {
                   const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
+                  if (item.href === '/settings') return null;
                   return (
                     <Link key={item.href} href={item.href} className={cn(
                         "flex flex-col items-center gap-1 p-2 rounded-md transition-colors w-20",
