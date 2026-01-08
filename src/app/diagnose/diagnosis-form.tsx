@@ -3,7 +3,19 @@
 import { useState, useRef, useEffect, useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
 import Image from 'next/image';
-import { Upload, X, Loader2, Wand2 } from 'lucide-react';
+import {
+  Upload,
+  X,
+  Loader2,
+  Wand2,
+  Camera,
+  GalleryHorizontal,
+  Sun,
+  Scan,
+  GitCompare,
+  AlertTriangle,
+  Info
+} from 'lucide-react';
 import { handleDiagnosis } from './actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,6 +23,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
+import { Separator } from '@/components/ui/separator';
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -24,14 +37,14 @@ function SubmitButton() {
       ) : (
         <>
           <Wand2 className="mr-2 h-4 w-4" />
-          Diagnose Disease
+          Get Diagnosis
         </>
       )}
     </Button>
   );
 }
 
-const MAX_IMAGE_SIZE = 512; // Max width or height in pixels
+const MAX_IMAGE_SIZE = 512;
 
 function resizeImage(file: File, callback: (dataUrl: string) => void) {
   const reader = new FileReader();
@@ -40,7 +53,6 @@ function resizeImage(file: File, callback: (dataUrl: string) => void) {
     img.onload = () => {
       const canvas = document.createElement('canvas');
       let { width, height } = img;
-
       if (width > height) {
         if (width > MAX_IMAGE_SIZE) {
           height *= MAX_IMAGE_SIZE / width;
@@ -52,7 +64,6 @@ function resizeImage(file: File, callback: (dataUrl: string) => void) {
           height = MAX_IMAGE_SIZE;
         }
       }
-
       canvas.width = width;
       canvas.height = height;
       const ctx = canvas.getContext('2d');
@@ -64,25 +75,41 @@ function resizeImage(file: File, callback: (dataUrl: string) => void) {
   reader.readAsDataURL(file);
 }
 
-
-export default function DiagnosisForm() {
+export default function Diagnosis() {
   const [state, formAction] = useActionState(handleDiagnosis, null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [imageDataUri, setImageDataUri] = useState<string>('');
+  const [hasCameraPermission, setHasCameraPermission] = useState<boolean | null>(null);
+  const [isCameraOpen, setIsCameraOpen] = useState(false);
+  
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
   useEffect(() => {
     if (state?.success === false && state.message) {
       toast({
-        variant: "destructive",
-        title: "Diagnosis Failed",
+        variant: 'destructive',
+        title: 'Diagnosis Failed',
         description: state.message,
       });
     }
+    if (state?.success === true) {
+      handleRemoveImage();
+      setIsCameraOpen(false);
+    }
   }, [state, toast]);
 
-
+  useEffect(() => {
+    return () => {
+      if (videoRef.current?.srcObject) {
+        const stream = videoRef.current.srcObject as MediaStream;
+        stream.getTracks().forEach(track => track.stop());
+      }
+    };
+  }, []);
+  
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -92,7 +119,7 @@ export default function DiagnosisForm() {
       });
     }
   };
-
+  
   const handleRemoveImage = () => {
     setPreviewUrl(null);
     setImageDataUri('');
@@ -101,106 +128,214 @@ export default function DiagnosisForm() {
     }
   };
 
-  return (
-    <div className="grid gap-10 md:grid-cols-2">
-      <Card className="max-w-md mx-auto w-full">
-        <form action={formAction}>
-          <input type="hidden" name="photoDataUri" value={imageDataUri} />
-          <CardHeader>
-            <CardTitle>Upload Image</CardTitle>
-            <CardDescription>Select a clear photo for the best results.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div
-              className="relative flex justify-center items-center w-full h-64 border-2 border-dashed border-border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors"
-              onClick={() => fileInputRef.current?.click()}
-            >
-              <input
-                type="file"
-                ref={fileInputRef}
-                onChange={handleFileChange}
-                className="hidden"
-                accept="image/*"
-              />
-              {previewUrl ? (
-                <>
-                  <Image src={previewUrl} alt="Image preview" fill className="object-contain rounded-lg p-2" />
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    size="icon"
-                    className="absolute top-2 right-2 h-8 w-8 rounded-full"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleRemoveImage();
-                    }}
-                  >
-                    <X className="h-4 w-4" />
-                  </Button>
-                </>
-              ) : (
-                <div className="text-center text-muted-foreground">
-                  <Upload className="mx-auto h-12 w-12" />
-                  <p className="mt-2">Click to upload or drag and drop</p>
-                  <p className="text-xs">PNG, JPG, GIF</p>
-                </div>
-              )}
+  const openCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      setHasCameraPermission(true);
+      setIsCameraOpen(true);
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+    } catch (error) {
+      console.error('Error accessing camera:', error);
+      setHasCameraPermission(false);
+      toast({
+        variant: 'destructive',
+        title: 'Camera Access Denied',
+        description: 'Please enable camera permissions in your browser settings.',
+      });
+    }
+  };
+
+  const takePicture = () => {
+    if (videoRef.current && canvasRef.current) {
+      const video = videoRef.current;
+      const canvas = canvasRef.current;
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const context = canvas.getContext('2d');
+      context?.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+      const dataUrl = canvas.toDataURL('image/jpeg');
+      setPreviewUrl(dataUrl);
+      setImageDataUri(dataUrl);
+      setIsCameraOpen(false);
+      const stream = videoRef.current.srcObject as MediaStream;
+      stream.getTracks().forEach(track => track.stop());
+    }
+  };
+
+  const tips = [
+    { icon: Sun, title: 'Good Lighting', description: 'Ensure the bird is clearly visible.' },
+    { icon: Scan, title: 'Focus on Area', description: 'Zoom in on eyes or droppings.' },
+    { icon: GitCompare, title: 'Multiple Angles', description: 'Try different angles if unsure.' },
+  ];
+  
+  const recentDiagnoses = [
+    { disease: 'Newcastle Disease', date: 'Yesterday', confidence: 'High', icon: '/images/newcastle.png', statusIcon: <AlertTriangle className="text-destructive" /> },
+    { disease: 'Coccidiosis', date: '2 days ago', confidence: 'Medium', icon: '/images/coccidiosis.png', statusIcon: <Info className="text-yellow-500" /> },
+  ]
+
+  if (state?.success && state.result) {
+    return (
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle>Diagnosis Result</CardTitle>
+          <CardDescription>AI-generated suggestions based on the uploaded image.</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div>
+            <h3 className="font-semibold text-lg flex items-center gap-2">
+              <Wand2 className="text-primary"/> Possible Diseases
+            </h3>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {state.result.possibleDiseases.map((disease) => (
+                <Badge key={disease.name} variant="secondary" className="text-base py-1 px-3">{disease.name}</Badge>
+              ))}
             </div>
-          </CardContent>
-          <CardFooter>
-            <SubmitButton />
-          </CardFooter>
-        </form>
+          </div>
+          <div>
+            <h3 className="font-semibold text-lg">Confidence Level</h3>
+            <div className="flex items-center gap-2 mt-2">
+              <Progress value={state.result.confidenceLevel * 100} className="w-full" />
+              <span className="font-mono text-sm">{(state.result.confidenceLevel * 100).toFixed(0)}%</span>
+            </div>
+          </div>
+          <div>
+            <h3 className="font-semibold text-lg">Detailed Symptoms</h3>
+             <ul className="list-disc list-inside mt-2 space-y-1 text-muted-foreground">
+              {state.result.symptoms.map((symptom) => (
+                <li key={symptom}>{symptom}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-semibold text-lg">Suggested Actions & Treatments</h3>
+            <ul className="list-disc list-inside mt-2 space-y-1 text-muted-foreground">
+              {state.result.recommendedActions.map((action) => (
+                <li key={action}>{action}</li>
+              ))}
+            </ul>
+          </div>
+          <Alert variant="destructive" className="mt-6">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertTitle>Disclaimer</AlertTitle>
+            <AlertDescription>
+              This is an AI-generated diagnosis and is not a substitute for professional veterinary advice. Always consult a qualified veterinarian for an accurate diagnosis and treatment plan.
+            </AlertDescription>
+          </Alert>
+        </CardContent>
+        <CardFooter>
+          <Button onClick={() => formAction(new FormData())} variant="outline" className="w-full">Start New Diagnosis</Button>
+        </CardFooter>
       </Card>
-      
-      <div className="max-w-md mx-auto w-full">
-        <Card className="h-full">
-          <CardHeader>
-            <CardTitle>Diagnosis Result</CardTitle>
-            <CardDescription>AI-generated suggestions will appear here.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            {state?.success && state.result ? (
+    )
+  }
+
+  return (
+    <div className="space-y-8">
+      <form action={formAction}>
+        <Card className="w-full">
+          <input type="hidden" name="photoDataUri" value={imageDataUri} />
+          <CardContent className="p-6">
+            {isCameraOpen ? (
               <div className="space-y-4">
-                <div>
-                  <h3 className="font-semibold text-lg">Possible Diseases</h3>
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {state.result.possibleDiseases.map((disease) => (
-                      <Badge key={disease} variant="secondary">{disease}</Badge>
-                    ))}
-                  </div>
+                <video ref={videoRef} className="w-full aspect-video rounded-md bg-muted" autoPlay muted playsInline />
+                <div className="flex gap-4">
+                  <Button onClick={() => setIsCameraOpen(false)} variant="outline" className="w-full">Cancel</Button>
+                  <Button onClick={takePicture} className="w-full">Take Picture</Button>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-lg">Suggested Treatments / Actions</h3>
-                  <ul className="list-disc list-inside mt-2 space-y-1 text-muted-foreground">
-                    {state.result.possibleTreatments.map((treatment) => (
-                      <li key={treatment}>{treatment}</li>
-                    ))}
-                  </ul>
+              </div>
+            ) : previewUrl ? (
+              <div className="space-y-4">
+                <div className="relative w-full aspect-video rounded-md overflow-hidden">
+                  <Image src={previewUrl} alt="Image preview" fill className="object-contain" />
+                   <Button
+                      type="button"
+                      variant="destructive"
+                      size="icon"
+                      className="absolute top-2 right-2 h-8 w-8 rounded-full z-10"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleRemoveImage();
+                      }}
+                    >
+                      <X className="h-4 w-4" />
+                  </Button>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-lg">Confidence Level</h3>
-                  <div className="flex items-center gap-2 mt-2">
-                    <Progress value={state.result.confidenceLevel * 100} className="w-full" />
-                    <span className="font-mono text-sm">{(state.result.confidenceLevel * 100).toFixed(0)}%</span>
-                  </div>
-                </div>
-                <Alert variant="destructive" className="mt-6">
-                  <AlertTitle>Disclaimer</AlertTitle>
-                  <AlertDescription>
-                    This is an AI-generated diagnosis and is not a substitute for professional veterinary advice. Always consult a qualified veterinarian for an accurate diagnosis and treatment plan.
-                  </AlertDescription>
-                </Alert>
+                <SubmitButton />
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center h-full text-center text-muted-foreground">
-                <Wand2 className="h-16 w-16" />
-                <p className="mt-4">Your diagnosis results will be displayed here.</p>
+              <div className="text-center p-8 border-2 border-dashed border-border rounded-lg space-y-4">
+                <div className="flex justify-center">
+                  <div className="bg-primary/10 rounded-full p-4 text-primary">
+                    <Camera className="h-10 w-10" />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold">Tap to upload photo</h3>
+                  <p className="text-muted-foreground">Take a picture or select from gallery</p>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                   <Button type="button" onClick={openCamera} size="lg" className="bg-green-500 hover:bg-green-600 text-white">
+                    <Camera className="mr-2" />
+                    Camera
+                  </Button>
+                  <Button type="button" onClick={() => fileInputRef.current?.click()} variant="secondary" size="lg">
+                    <GalleryHorizontal className="mr-2" />
+                    Gallery
+                  </Button>
+                  <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept="image/*" />
+                </div>
               </div>
             )}
           </CardContent>
         </Card>
+      </form>
+      <canvas ref={canvasRef} className="hidden"></canvas>
+      
+      <div>
+        <h2 className="text-xl font-bold text-center mb-4">Tips for best results</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {tips.map(tip => (
+            <Card key={tip.title} className="bg-card">
+              <CardContent className="flex flex-col items-center text-center p-6 space-y-2">
+                 <div className="p-3 bg-primary/10 rounded-lg">
+                  <tip.icon className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="font-semibold">{tip.title}</h3>
+                <p className="text-sm text-muted-foreground">{tip.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
+      
+      <div>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold">Recent Diagnoses</h2>
+          <Button variant="link">See All</Button>
+        </div>
+        <div className="space-y-2">
+          {recentDiagnoses.map((item) => (
+            <Card key={item.disease} className="p-4 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <Image src={item.icon} alt={item.disease} width={48} height={48} className="rounded-md object-cover" />
+                <div>
+                  <p className="font-semibold">{item.disease}</p>
+                  <p className="text-sm text-muted-foreground">{item.date} • {item.confidence} Confidence</p>
+                </div>
+              </div>
+              <div>{item.statusIcon}</div>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      <div className="text-center text-muted-foreground text-sm flex items-start justify-center gap-2 pt-4">
+        <Info className="h-4 w-4 mt-0.5 shrink-0" />
+        <p>This tool uses AI for preliminary diagnosis. Please consult a qualified veterinarian for confirmation and treatment.</p>
+      </div>
+
     </div>
   );
 }

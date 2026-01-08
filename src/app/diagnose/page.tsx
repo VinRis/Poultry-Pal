@@ -1,15 +1,18 @@
-import PageHeader from "@/components/common/page-header";
-import DiagnosisForm from "./diagnosis-form";
+import Diagnosis from "./diagnosis-form";
 
 export default function DiagnosePage() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <PageHeader
-        title="AI Disease Diagnosis"
-        description="Upload a picture of a sick chicken or its droppings for analysis."
-      />
+    <div className="container mx-auto px-4 py-8 max-w-2xl">
+      <div className="text-center">
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground font-headline">
+          Identify Poultry Diseases Instantly
+        </h1>
+        <p className="mt-2 text-muted-foreground text-lg">
+          Upload a clear photo of the sick bird or droppings to get a diagnosis and recommended actions.
+        </p>
+      </div>
       <div className="mt-8">
-        <DiagnosisForm />
+        <Diagnosis />
       </div>
     </div>
   );

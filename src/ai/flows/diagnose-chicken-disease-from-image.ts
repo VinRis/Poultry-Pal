@@ -20,17 +20,22 @@ const DiagnoseChickenDiseaseFromImageInputSchema = z.object({
 });
 export type DiagnoseChickenDiseaseFromImageInput = z.infer<typeof DiagnoseChickenDiseaseFromImageInputSchema>;
 
+const DiseaseSchema = z.object({
+  name: z.string().describe('The name of the possible disease.'),
+});
+
 const DiagnoseChickenDiseaseFromImageOutputSchema = z.object({
   possibleDiseases: z
+    .array(DiseaseSchema)
+    .describe('A list of possible diseases that the chicken might have.'),
+  symptoms: z.array(z.string()).describe('A list of observed symptoms from the image.'),
+  recommendedActions: z
     .array(z.string())
-    .describe('Possible diseases that the chicken might have.'),
-  possibleTreatments: z
-    .array(z.string())
-    .describe('Possible treatments for the diseases.'),
+    .describe('A list of recommended actions and treatments for the diagnosed issues.'),
   confidenceLevel: z
     .number()
     .describe(
-      'A number between 0 and 1 indicating the confidence level of the diagnosis.'
+      'A number between 0 and 1 indicating the confidence level of the primary diagnosis.'
     ),
 });
 export type DiagnoseChickenDiseaseFromImageOutput = z.infer<typeof DiagnoseChickenDiseaseFromImageOutputSchema>;
@@ -45,13 +50,17 @@ const prompt = ai.definePrompt({
   name: 'diagnoseChickenDiseaseFromImagePrompt',
   input: {schema: DiagnoseChickenDiseaseFromImageInputSchema},
   output: {schema: DiagnoseChickenDiseaseFromImageOutputSchema},
-  prompt: `You are an expert veterinarian specializing in diagnosing poultry illnesses. Analyze the image and provide a list of possible diseases, possible treatments, and a confidence level for the diagnosis.
+  prompt: `You are an expert veterinarian specializing in diagnosing poultry illnesses, particularly for farmers in East Africa. 
+  
+Analyze the provided image and provide a detailed diagnosis. Your response should be in JSON format.
 
-Use the following image as the primary source of information about the chicken or its droppings.
+Your analysis must include:
+1.  **possibleDiseases**: Identify one or more potential diseases. For each, provide just the disease name.
+2.  **symptoms**: List the specific visual symptoms you can observe in the image that support your diagnosis.
+3.  **recommendedActions**: Provide a clear, actionable list of steps the farmer should take. This should include immediate supportive care, when to consult a vet, and potential common treatments available in the region.
+4.  **confidenceLevel**: A numerical value from 0.0 to 1.0 representing your confidence in the most likely diagnosis.
 
-Photo: {{media url=photoDataUri}}
-
-Return your answer in JSON format.
+Image to analyze: {{media url=photoDataUri}}
 `,
 });
 

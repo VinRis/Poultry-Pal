@@ -7,7 +7,7 @@ import {
 } from '@/ai/flows/diagnose-chicken-disease-from-image';
 
 const schema = z.object({
-  photoDataUri: z.string().min(1, { message: 'Image is required.' }),
+  photoDataUri: z.string(),
 });
 
 export type FormState = {
@@ -21,6 +21,11 @@ export async function handleDiagnosis(
   formData: FormData
 ): Promise<FormState> {
   try {
+    // Reset state for new diagnosis
+    if (!formData.get('photoDataUri')) {
+      return null;
+    }
+    
     const validatedFields = schema.safeParse({
       photoDataUri: formData.get('photoDataUri'),
     });
@@ -32,7 +37,7 @@ export async function handleDiagnosis(
         success: false,
       };
     }
-
+    
     if (!validatedFields.data.photoDataUri.startsWith('data:image')) {
        return {
         message: 'Invalid image data. Please upload a valid image file.',
