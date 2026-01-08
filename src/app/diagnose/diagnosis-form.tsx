@@ -97,6 +97,16 @@ export default function Diagnosis() {
     });
   };
 
+  const closeCamera = () => {
+    if (videoRef.current?.srcObject) {
+      const stream = videoRef.current.srcObject as MediaStream;
+      if (stream && typeof stream.getTracks === 'function') {
+        stream.getTracks().forEach(track => track.stop());
+      }
+    }
+    setIsCameraOpen(false);
+  }
+
   useEffect(() => {
     if (state?.success === false && state.message) {
       toast({
@@ -113,10 +123,8 @@ export default function Diagnosis() {
 
   useEffect(() => {
     return () => {
-      if (videoRef.current?.srcObject) {
-        const stream = videoRef.current.srcObject as MediaStream;
-        stream.getTracks().forEach(track => track.stop());
-      }
+      // Ensure camera is closed on component unmount
+      closeCamera();
     };
   }, []);
   
@@ -143,6 +151,8 @@ export default function Diagnosis() {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       setHasCameraPermission(true);
       setIsCameraOpen(true);
+      setPreviewUrl(null); // Clear previous preview
+      setImageDataUri('');
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
       }
@@ -166,13 +176,13 @@ export default function Diagnosis() {
       const context = canvas.getContext('2d');
       context?.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
       const dataUrl = canvas.toDataURL('image/jpeg');
+      
+      // Set state first
       setPreviewUrl(dataUrl);
       setImageDataUri(dataUrl);
-      setIsCameraOpen(false);
-      if (videoRef.current?.srcObject) {
-        const stream = videoRef.current.srcObject as MediaStream;
-        stream.getTracks().forEach(track => track.stop());
-      }
+      
+      // Then close the camera
+      closeCamera();
     }
   };
 
@@ -255,7 +265,7 @@ export default function Diagnosis() {
               <div className="space-y-4">
                 <video ref={videoRef} className="w-full aspect-video rounded-md bg-muted" autoPlay muted playsInline />
                 <div className="flex gap-4">
-                  <Button onClick={() => setIsCameraOpen(false)} variant="outline" className="w-full">Cancel</Button>
+                  <Button onClick={closeCamera} variant="outline" className="w-full">Cancel</Button>
                   <Button onClick={takePicture} className="w-full">Take Picture</Button>
                 </div>
               </div>
@@ -276,19 +286,24 @@ export default function Diagnosis() {
                       <X className="h-4 w-4" />
                   </Button>
                 </div>
-                <Button type="submit" disabled={isPending} className="w-full">
-                  {isPending ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Diagnosing...
-                    </>
-                  ) : (
-                    <>
-                      <Wand2 className="mr-2 h-4 w-4" />
-                      Get Diagnosis
-                    </>
-                  )}
-                </Button>
+                <div className="flex gap-2">
+                    <Button type="button" variant="outline" onClick={handleRemoveImage} className="w-full">
+                        Cancel
+                    </Button>
+                    <Button type="submit" disabled={isPending} className="w-full">
+                      {isPending ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Diagnosing...
+                        </>
+                      ) : (
+                        <>
+                          <Wand2 className="mr-2 h-4 w-4" />
+                          Get Diagnosis
+                        </>
+                      )}
+                    </Button>
+                </div>
               </div>
             ) : (
               <div className="text-center p-8 border-2 border-dashed border-border rounded-lg space-y-4">
