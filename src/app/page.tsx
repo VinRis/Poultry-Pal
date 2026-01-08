@@ -60,9 +60,9 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <header className="p-4 flex items-center gap-2">
-        <Logo className="w-10 h-10 text-primary" />
-        <h1 className="font-bold text-2xl text-foreground">Poultry Pal</h1>
+      <header className="p-4">
+        <h1 className="text-3xl font-bold text-foreground">Jambo,</h1>
+        <p className="text-muted-foreground text-lg">welcome farmer</p>
       </header>
       
       <main className="flex-1 p-4 space-y-8">
