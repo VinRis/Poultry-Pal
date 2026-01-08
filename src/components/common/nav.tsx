@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Home, Stethoscope, Menu, User, Users } from 'lucide-react';
+import { Home, Stethoscope, Menu, User, BookOpen } from 'lucide-react';
 
 import {
   SidebarHeader,
@@ -21,7 +21,7 @@ import { cn } from '@/lib/utils';
 const navItems = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/diagnose', label: 'Diagnosis', icon: Stethoscope },
-  { href: '/community', label: 'Community', icon: Users },
+  { href: '/learn', label: 'Learn', icon: BookOpen },
   { href: '/profile', label: 'Profile', icon: User },
 ];
 
