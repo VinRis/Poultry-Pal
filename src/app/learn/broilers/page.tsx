@@ -1,3 +1,4 @@
+
 import { broilersGuide, placeholderImages } from '@/lib/placeholder-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Thermometer, Utensils, Home, Shield } from 'lucide-react';

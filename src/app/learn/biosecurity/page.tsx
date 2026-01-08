@@ -1,3 +1,4 @@
+
 import { placeholderImages } from '@/lib/placeholder-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ShieldCheck, UserMinus, Fence, HandSoap } from 'lucide-react';

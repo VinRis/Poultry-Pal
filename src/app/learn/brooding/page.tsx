@@ -1,3 +1,4 @@
+
 import { placeholderImages } from '@/lib/placeholder-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Thermometer, Droplets, Utensils, Bed } from 'lucide-react';

@@ -1,3 +1,4 @@
+
 import { layersGuide, placeholderImages } from '@/lib/placeholder-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Lightbulb, Home, Utensils, Egg } from 'lucide-react';
