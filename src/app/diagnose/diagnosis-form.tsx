@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useState, useRef, useEffect, useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import Image from 'next/image';
 import { Upload, X, Loader2, Wand2 } from 'lucide-react';
 import { handleDiagnosis } from './actions';
@@ -32,8 +32,7 @@ function SubmitButton() {
 }
 
 export default function DiagnosisForm() {
-  const [initialState, setInitialState] = useState(null);
-  const [state, formAction] = useFormState(handleDiagnosis, initialState);
+  const [state, formAction] = useActionState(handleDiagnosis, null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [imageDataUri, setImageDataUri] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement>(null);
