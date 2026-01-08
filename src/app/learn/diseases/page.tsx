@@ -36,10 +36,21 @@ import {
 type Disease = (typeof diseases)[0] & { type: string; severity: string; };
 
 const diseaseImages: { [key: string]: string | undefined } = {
-  'Newcastle Disease': placeholderImages.find(img => img.id === 'diseases-1')?.imageUrl,
-  'Coccidiosis': placeholderImages.find(img => img.id === 'broilers-1')?.imageUrl,
-  'Fowl Pox': placeholderImages.find(img => img.id === 'kenbro-1')?.imageUrl,
-  'Gumboro Disease': placeholderImages.find(img => img.id === 'kuroiler-1')?.imageUrl,
+    'Newcastle Disease': placeholderImages.find(img => img.id === 'disease-newcastle')?.imageUrl,
+    'Gumboro Disease (IBD)': placeholderImages.find(img => img.id === 'disease-gumboro')?.imageUrl,
+    'Fowl Pox': placeholderImages.find(img => img.id === 'disease-fowlpox')?.imageUrl,
+    'Coccidiosis': placeholderImages.find(img => img.id === 'disease-coccidiosis')?.imageUrl,
+    'Infectious Coryza': placeholderImages.find(img => img.id === 'disease-coryza')?.imageUrl,
+    'Fowl Cholera': placeholderImages.find(img => img.id === 'disease-cholera')?.imageUrl,
+    "Marek's Disease": placeholderImages.find(img => img.id === 'disease-mareks')?.imageUrl,
+    'Infectious Bronchitis (IB)': placeholderImages.find(img => img.id === 'disease-ib')?.imageUrl,
+    'Avian Influenza (Bird Flu)': placeholderImages.find(img => img.id === 'disease-flu')?.imageUrl,
+    'Mycoplasmosis (CRD)': placeholderImages.find(img => img.id === 'disease-crd')?.imageUrl,
+    'Salmonellosis': placeholderImages.find(img => img.id === 'disease-salmonella')?.imageUrl,
+    'Fowl Typhoid': placeholderImages.find(img => img.id === 'disease-typhoid')?.imageUrl,
+    'Blackhead Disease': placeholderImages.find(img => img.id === 'disease-blackhead')?.imageUrl,
+    'Roundworm Infestation': placeholderImages.find(img => img.id === 'disease-worms')?.imageUrl,
+    'E. Coli Infection': placeholderImages.find(img => img.id === 'disease-ecoli')?.imageUrl,
 };
 
 
@@ -64,13 +75,22 @@ export default function DiseasesPage() {
   const [selectedDisease, setSelectedDisease] = useState<Disease | null>(null);
   const router = useRouter();
   
-  const filters = ['All', 'Viral', 'Bacterial', 'Parasitic'];
+  const filters = ['All', 'Viral', 'Bacterial', 'Parasitic', 'Fungal'];
+
+  const getDiseaseType = (disease: (typeof diseases)[0]): string => {
+    const name = disease.name.toLowerCase();
+    const cure = disease.cure.toLowerCase();
+
+    if (name.includes('coryza') || name.includes('cholera') || name.includes('salmonellosis') || name.includes('typhoid') || name.includes('e. coli')) return 'Bacterial';
+    if (name.includes('coccidiosis') || name.includes('blackhead') || name.includes('roundworm')) return 'Parasitic';
+    if (cure.includes('no cure') || name.includes('newcastle') || name.includes('gumboro') || name.includes('pox') || name.includes('marek') || name.includes('bronchitis') || name.includes('influenza')) return 'Viral';
+    return 'Other';
+  }
 
   const filteredDiseases: Disease[] = diseases
     .map(d => {
-        const type = d.cure.toLowerCase().includes('no cure') ? 'Viral' :
-                     d.name.toLowerCase().includes('coccidiosis') ? 'Parasitic' : 'Bacterial';
         const severity = d.symptoms.length > 3 ? 'High' : d.symptoms.length > 2 ? 'Moderate' : 'Low';
+        const type = getDiseaseType(d);
         return { ...d, type, severity };
     })
     .filter(disease => {

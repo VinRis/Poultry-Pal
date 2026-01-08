@@ -148,7 +148,7 @@ export const diseases = [
     cure: 'There is no cure for Newcastle disease. Supportive care can be provided, but prevention through vaccination is the best strategy.'
   },
   {
-    name: 'Gumboro Disease (Infectious Bursal Disease)',
+    name: 'Gumboro Disease (IBD)',
     symptoms: ['Whitish or watery diarrhea', 'Ruffled feathers, depression', 'Pecking at their own vent', 'High mortality in young chicks (3-6 weeks)'],
     prevention: ['Vaccination of parent stock and chicks', 'All-in/all-out system', 'Good sanitation'],
     cure: 'No specific cure. Supportive treatment with vitamins and electrolytes in water can help reduce mortality.'
@@ -164,6 +164,72 @@ export const diseases = [
     symptoms: ['Bloody or watery diarrhea', 'Hunched posture, ruffled feathers', 'Pale comb and wattles', 'Reduced growth and feed consumption'],
     prevention: ['Use of medicated starter feed (with coccidiostats)', 'Good litter management to keep it dry', 'Avoid overcrowding'],
     cure: 'Treat with anticoccidial drugs (e.g., Amprolium) in drinking water as prescribed by a vet.'
+  },
+  {
+    name: 'Infectious Coryza',
+    symptoms: ['Swelling of face and wattles', 'Thick, sticky discharge from eyes and nose', 'Sneezing and labored breathing', 'Drop in egg production'],
+    prevention: ['Vaccination', 'Strict biosecurity', 'Avoid mixing flocks of different ages'],
+    cure: 'Treat with antibiotics (e.g., tetracyclines, sulfonamides) as recommended by a vet. Affected birds can become carriers.'
+  },
+  {
+    name: 'Fowl Cholera',
+    symptoms: ['Acute form: Sudden death', 'Chronic form: Swollen joints, wattles, and footpads', 'Greenish or yellowish diarrhea', 'Loss of appetite and depression'],
+    prevention: ['Vaccination', 'Rodent control', 'Good sanitation and hygiene'],
+    cure: 'Treatment with antibiotics like sulfonamides or tetracyclines can be effective if administered early.'
+  },
+  {
+    name: "Marek's Disease",
+    symptoms: ['Paralysis of legs, wings, or neck', 'Gray eye or irregular pupil shape', 'Weight loss and tumors on internal organs', 'Skin lesions around feather follicles'],
+    prevention: ['Vaccination of day-old chicks is highly effective', 'Strict biosecurity'],
+    cure: 'No cure exists. Prevention through vaccination is the only effective control measure.'
+  },
+  {
+    name: 'Infectious Bronchitis (IB)',
+    symptoms: ['Gasping, coughing, and sneezing (in chicks)', 'Nasal discharge', 'Drop in egg production and poor egg quality (thin, wrinkled shells) in layers'],
+    prevention: ['Vaccination with appropriate strains', 'Good ventilation and biosecurity'],
+    cure: 'No specific cure. Supportive care and antibiotics to control secondary bacterial infections are recommended.'
+  },
+  {
+    name: 'Avian Influenza (Bird Flu)',
+    symptoms: ['Sudden high mortality', 'Swelling of head, wattles, and combs', 'Purple discoloration of wattles and legs', 'Respiratory distress, coughing, and sneezing'],
+    prevention: ['Strict biosecurity to prevent contact with wild birds', 'Report any suspected cases to authorities immediately', 'Culling of infected flocks'],
+    cure: 'No cure. Eradication of infected flocks is the primary control method to prevent spread.'
+  },
+  {
+    name: 'Mycoplasmosis (CRD)',
+    symptoms: ['Coughing, sneezing, and nasal discharge', 'Foamy or bubbly eyes', 'Slowed growth in young birds', 'Reduced egg production in layers'],
+    prevention: ['Source chicks from Mycoplasma-free breeder flocks', 'Good ventilation and low-stress environment'],
+    cure: 'Antibiotics (e.g., Tylosin, tetracyclines) can control symptoms but may not eliminate the infection. Birds can remain carriers.'
+  },
+  {
+    name: 'Salmonellosis',
+    symptoms: ['Pullorum Disease: White, pasty diarrhea in chicks, high mortality', 'Fowl Typhoid: Depression, greenish diarrhea, and anemia in adult birds'],
+    prevention: ['Source chicks from certified disease-free hatcheries', 'Strict sanitation and rodent control', 'Blood testing of breeder flocks'],
+    cure: 'Antibiotics can reduce mortality but may not eliminate the carrier state. Culling of infected birds is often recommended.'
+  },
+  {
+    name: 'Fowl Typhoid',
+    symptoms: ['Pale, anemic combs and wattles', 'Greenish-yellow diarrhea', 'Huddling and depression', 'Sudden drop in egg production and high mortality'],
+    prevention: ['Vaccination', 'Biosecurity and rodent control', 'Testing and culling of carrier birds'],
+    cure: 'Treatment with appropriate antibiotics can be effective, but carrier birds are a risk for future outbreaks.'
+  },
+  {
+    name: 'Blackhead Disease',
+    symptoms: ['Lethargy and drooping wings', 'Yellowish, foamy droppings', 'Darkening of the head (cyanosis), though not always present', 'Most common in turkeys, but chickens can be carriers'],
+    prevention: ['Do not raise turkeys and chickens together', 'Regular deworming for cecal worms, which transmit the disease', 'Good range and litter management'],
+    cure: 'Certain medications may be available through a veterinarian, but prevention is more effective.'
+  },
+  {
+    name: 'Roundworm Infestation',
+    symptoms: ['Poor growth and weight loss', 'Diarrhea', 'Pale comb and wattles', 'Visible worms in droppings or post-mortem'],
+    prevention: ['Regular deworming schedule', 'Clean and dry litter', 'Rotating pastures for free-range birds'],
+    cure: 'Treat with an approved dewormer (e.g., Piperazine, Fenbendazole) in feed or water.'
+  },
+  {
+    name: 'E. Coli Infection',
+    symptoms: ['Respiratory distress', 'Diarrhea', 'Reduced appetite and lethargy', 'Can be a secondary infection to other diseases like CRD or IB'],
+    prevention: ['Good sanitation of feed, water, and housing', 'Reducing stress and overcrowding', 'Ensuring good ventilation'],
+    cure: 'Treatment with antibiotics based on sensitivity testing. Supportive care with vitamins and electrolytes is also beneficial.'
   }
 ];
 

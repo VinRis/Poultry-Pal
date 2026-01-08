@@ -3,7 +3,7 @@
     {
       "id": "hero-1",
       "description": "A vibrant picture of healthy chickens in a farm setting.",
-      "imageUrl": "https://images.unsplash.com/photo-1660085693363-5d6b3f459302?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjaGlja2VucyUyMGZhcm18ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1617457563998-bbfd377c6751?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjaGlja2VucyUyMGZhcm18ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "chickens farm"
     },
     {
@@ -15,25 +15,25 @@
     {
       "id": "kienyeji-1",
       "description": "Image of a Kienyeji chicken.",
-      "imageUrl": "https://images.unsplash.com/photo-1543856967-ea9a54fd46a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8a2llbnllamklMjBjaGlja2VufGVufDB8fHx8MTc2Nzg1NTY5OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1694267518713-0543ffa17166?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxraWVueWVqaSUyMGNoaWNrZW58ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kienyeji chicken"
     },
     {
       "id": "kienyeji-2",
       "description": "Image of Kienyeji chicks.",
-      "imageUrl": "https://images.unsplash.com/photo-1750008627695-64dbc79a0563?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxraWVueWVqaSUyMGNoaWNrc3xlbnwwfHx8fDE3Njc4NjE4MzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1759710483878-8a51bf3b4f9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxraWVueWVqaSUyMGNoaWNrc3xlbnwwfHx8fDE3Njc4NjE4MzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kienyeji chicks"
     },
     {
       "id": "kuroiler-1",
       "description": "Image of a Kuroiler chicken.",
-      "imageUrl": "https://images.unsplash.com/photo-1701488329812-ba65397f8e18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxrdXJvaWxlciUyMGNoaWNrZW58ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1712959542428-af7592cdbdcd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxrdXJvaWxlciUyMGNoaWNrZW58ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kuroiler chicken"
     },
     {
       "id": "kuroiler-2",
       "description": "Image of Kuroiler chickens foraging.",
-      "imageUrl": "https://images.unsplash.com/photo-1734026659369-849c809a9325?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxrdXJvaWxlciUyMGZvcmFnaW5nfGVufDB8fHx8MTc2Nzg2MTgzNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1714565533806-22a5f4fb034d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxrdXJvaWxlciUyMGZvcmFnaW5nfGVufDB8fHx8MTc2Nzg2MTgzNXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kuroiler foraging"
     },
     {
@@ -45,43 +45,43 @@
     {
       "id": "kenbro-2",
       "description": "Image of a group of Kenbro chickens.",
-      "imageUrl": "https://images.unsplash.com/photo-1663621038619-e29fc9320bb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxrZW5icm8lMjBjaGlja2Vuc3xlbnwwfHx8fDE3Njc4NjE4MzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1722551089012-91acb119d758?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8a2VuYnJvJTIwY2hpY2tlbnN8ZW58MHx8fHwxNzY3ODYxODM1fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kenbro chickens"
     },
     {
       "id": "sasso-1",
       "description": "Image of a Sasso chicken.",
-      "imageUrl": "https://images.unsplash.com/photo-1706543051894-879487d26f4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzYXNzbyUyMGNoaWNrZW58ZW58MHx8fHwxNzY3ODYyMTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1543856967-ea9a54fd46a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c2Fzc28lMjBjaGlja2VufGVufDB8fHx8MTc2Nzg2MjE0N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "sasso chicken"
     },
     {
       "id": "sasso-2",
       "description": "A group of sasso chickens.",
-      "imageUrl": "https://images.unsplash.com/photo-1728326853117-28d58ea8a8fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzYXNzbyUyMGNoaWNrZW5zfGVufDB8fHx8MTc2Nzg2MjE0N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1586985364068-000c1f5a3b4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzYXNzbyUyMGNoaWNrZW5zfGVufDB8fHx8MTc2Nzg2MjE0N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "sasso chickens"
     },
     {
       "id": "kari-1",
       "description": "Image of a KARI Improved Kienyeji chicken.",
-      "imageUrl": "https://images.unsplash.com/photo-1694267477609-c7adda82c9fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxLQVJJJTIwY2hpY2tlbnxlbnwwfHx8fDE3Njc4NjIxNDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1694267518713-0543ffa17166?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxLQVJJJTIwY2hpY2tlbnxlbnwwfHx8fDE3Njc4NjIxNDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "KARI chicken"
     },
     {
       "id": "kari-2",
       "description": "Image of KARI Improved Kienyeji chickens.",
-      "imageUrl": "https://images.unsplash.com/photo-1764060126485-46e72c85f1ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxLQVJJJTIwY2hpY2tlbnN8ZW58MHx8fHwxNzY3ODYyMTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1694267477609-c7adda82c9fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxLQVJJJTIwY2hpY2tlbnN8ZW58MHx8fHwxNzY3ODYyMTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "KARI chickens"
     },
     {
       "id": "rainbow-rooster-1",
       "description": "Image of a Rainbow Rooster.",
-      "imageUrl": "https://images.unsplash.com/photo-1519874745262-111511979775?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyYWluYm93JTIwcm9vc3RlcnxlbnwwfHx8fDE3Njc4NjIxNDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1674363636625-08f348df075e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cmFpbmJvdyUyMHJvb3N0ZXJ8ZW58MHx8fHwxNzY3ODYyMTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "rainbow rooster"
     },
     {
       "id": "rainbow-rooster-2",
       "description": "Image of Rainbow Rooster chickens.",
-      "imageUrl": "https://images.unsplash.com/photo-1708868304253-68ba2b1b590f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxyYWluYm93JTIwcm9vc3RlcnN8ZW58MHx8fHwxNzY3ODYyMTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1558877428-4ceb4f8be868?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cmFpbmJvdyUyMHJvb3N0ZXJzfGVufDB8fHx8MTc2Nzg2MjE0N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "rainbow roosters"
     },
     {
@@ -105,14 +105,104 @@
     {
       "id": "broilers-1",
       "description": "Image of broiler chickens.",
-      "imageUrl": "https://images.unsplash.com/photo-1728326853117-28d58ea8a8fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxicm9pbGVyJTIwY2hpY2tlbnN8ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1753168521124-a6bab276aeed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxicm9pbGVyJTIwY2hpY2tlbnN8ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "broiler chickens"
     },
     {
       "id": "diseases-1",
       "description": "Image related to poultry health.",
-      "imageUrl": "https://images.unsplash.com/photo-1689356156837-6ddbf5776818?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwb3VsdHJ5JTIwaGVhbHRofGVufDB8fHx8MTc2Nzg1NTY5OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1720983197848-39f51a5e4544?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb3VsdHJ5JTIwaGVhbHRofGVufDB8fHx8MTc2Nzg1NTY5OHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "poultry health"
+    },
+    {
+      "id": "disease-newcastle",
+      "description": "Image for Newcastle Disease.",
+      "imageUrl": "https://images.unsplash.com/photo-1753939844802-98d5e8a4ee48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzaWNrJTIwY2hpY2tlbnxlbnwwfHx8fDE3Njc4NjIzNTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sick chicken"
+    },
+    {
+      "id": "disease-gumboro",
+      "description": "Image for Gumboro Disease.",
+      "imageUrl": "https://images.unsplash.com/photo-1628511360216-2f385a84aace?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzaWNrJTIwY2hpY2t8ZW58MHx8fHwxNzY3ODYyMzUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sick chick"
+    },
+    {
+      "id": "disease-fowlpox",
+      "description": "Image for Fowl Pox.",
+      "imageUrl": "https://images.unsplash.com/photo-1570975434862-9ae02c75bcec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjaGlja2VuJTIwc29yZXN8ZW58MHx8fHwxNzY3ODYyMzU0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "chicken sores"
+    },
+    {
+      "id": "disease-coccidiosis",
+      "description": "Image for Coccidiosis.",
+      "imageUrl": "https://images.unsplash.com/photo-1763050230045-f271cfec76f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c2ljayUyMHBvdWx0cnl8ZW58MHx8fHwxNzY3ODYyMzU0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sick poultry"
+    },
+    {
+      "id": "disease-coryza",
+      "description": "Image for Infectious Coryza.",
+      "imageUrl": "https://images.unsplash.com/photo-1608872689366-4cbcf0c7e72c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzd29sbGVuJTIwY2hpY2tlbnxlbnwwfHx8fDE3Njc4NjIzNTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "swollen chicken"
+    },
+    {
+      "id": "disease-cholera",
+      "description": "Image for Fowl Cholera.",
+      "imageUrl": "https://images.unsplash.com/photo-1570975434862-9ae02c75bcec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsZXRoYXJnaWMlMjBjaGlja2VufGVufDB8fHx8MTc2Nzg2MjM1M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "lethargic chicken"
+    },
+    {
+      "id": "disease-mareks",
+      "description": "Image for Marek's Disease.",
+      "imageUrl": "https://images.unsplash.com/photo-1753939844802-98d5e8a4ee48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGFyYWx5emVkJTIwY2hpY2tlbnxlbnwwfHx8fDE3Njc4NjIzNTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "paralyzed chicken"
+    },
+    {
+      "id": "disease-ib",
+      "description": "Image for Infectious Bronchitis.",
+      "imageUrl": "https://images.unsplash.com/photo-1649815846511-7640f28ba9a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjb3VnaGluZyUyMGNoaWNrZW58ZW58MHx8fHwxNzY3ODYyMzU0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "coughing chicken"
+    },
+    {
+      "id": "disease-flu",
+      "description": "Image for Avian Influenza.",
+      "imageUrl": "https://images.unsplash.com/photo-1751226993207-c9d082eed78f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxpbGwlMjBwb3VsdHJ5fGVufDB8fHx8MTc2Nzg2MjM1M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ill poultry"
+    },
+    {
+      "id": "disease-crd",
+      "description": "Image for Mycoplasmosis (CRD).",
+      "imageUrl": "https://images.unsplash.com/photo-1589489208602-3037bd06c859?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjaGlja2VuJTIwcmVzcGlyYXRvcnl8ZW58MHx8fHwxNzY3ODYyMzU0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "chicken respiratory"
+    },
+    {
+      "id": "disease-salmonella",
+      "description": "Image for Salmonellosis.",
+      "imageUrl": "https://images.unsplash.com/photo-1680380586473-6b5ae788394f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3ZWFrJTIwY2hpY2t8ZW58MHx8fHwxNzY3ODYyMzUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "weak chick"
+    },
+    {
+      "id": "disease-typhoid",
+      "description": "Image for Fowl Typhoid.",
+      "imageUrl": "https://images.unsplash.com/photo-1662452110655-37d6bc715758?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwYWxlJTIwY2hpY2tlbnxlbnwwfHx8fDE3Njc4NjIzNTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pale chicken"
+    },
+    {
+      "id": "disease-blackhead",
+      "description": "Image for Blackhead Disease.",
+      "imageUrl": "https://images.unsplash.com/photo-1632808552725-0d73febe67ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzaWNrJTIwdHVya2V5fGVufDB8fHx8MTc2Nzg2MjM1NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sick turkey"
+    },
+    {
+      "id": "disease-worms",
+      "description": "Image for Roundworm Infestation.",
+      "imageUrl": "https://images.unsplash.com/photo-1753939844802-98d5e8a4ee48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0aGluJTIwY2hpY2tlbnxlbnwwfHx8fDE3Njc4NjIzNTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "thin chicken"
+    },
+    {
+      "id": "disease-ecoli",
+      "description": "Image for E. Coli Infection.",
+      "imageUrl": "https://images.unsplash.com/photo-1739640449045-ea5adb28e0a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxodWRkbGVkJTIwY2hpY2tzfGVufDB8fHx8MTc2Nzg2MjM1NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "huddled chicks"
     }
   ]
 }
