@@ -14,9 +14,11 @@ import {
   Scan,
   GitCompare,
   AlertTriangle,
-  Info
+  Info,
+  Type,
+  Image as ImageIcon
 } from 'lucide-react';
-import { handleDiagnosis, type FormState } from './actions';
+import { handleImageDiagnosis, handleTextDiagnosis, type FormState } from './actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -24,9 +26,10 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Textarea } from '@/components/ui/textarea';
 
-function SubmitButton() {
-  const [isPending, startTransition] = useTransition();
+function SubmitButton({ isPending, text = 'Get Diagnosis' }: {isPending: boolean, text?: string}) {
   return (
     <Button type="submit" disabled={isPending} className="w-full">
       {isPending ? (
@@ -37,7 +40,7 @@ function SubmitButton() {
       ) : (
         <>
           <Wand2 className="mr-2 h-4 w-4" />
-          Get Diagnosis
+          {text}
         </>
       )}
     </Button>
@@ -106,28 +109,46 @@ export default function Diagnosis() {
   const cameraInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
-  const formRef = useRef<HTMLFormElement>(null);
+  const imageFormRef = useRef<HTMLFormElement>(null);
+  const textFormRef = useRef<HTMLFormElement>(null);
   
   const [diagnosesHistory, setDiagnosesHistory] = useState<DiagnosisHistoryItem[]>([
     { disease: 'Newcastle Disease', date: 'Yesterday', confidence: 'High', confidenceValue: 0.8 },
     { disease: 'Coccidiosis', date: '2 days ago', confidence: 'Medium', confidenceValue: 0.6 },
   ]);
 
-  const performDiagnosis = (formData: FormData) => {
+  const performImageDiagnosis = (formData: FormData) => {
     startTransition(async () => {
-        const newState = await handleDiagnosis(state, formData);
+        const newState = await handleImageDiagnosis(state, formData);
         setState(newState);
         if (newState?.success && newState.result) {
-            const newEntry: DiagnosisHistoryItem = {
-                disease: newState.result.possibleDiseases[0]?.name || 'Unknown',
-                date: new Date().toLocaleDateString(undefined, { day: 'numeric', month: 'short' }),
-                confidence: getConfidenceString(newState.result.confidenceLevel),
-                confidenceValue: newState.result.confidenceLevel,
-            };
-            setDiagnosesHistory(prev => [newEntry, ...prev]);
+            updateHistory(newState.result);
         }
     });
   };
+
+  const performTextDiagnosis = (formData: FormData) => {
+    startTransition(async () => {
+        const newState = await handleTextDiagnosis(state, formData);
+        setState(newState);
+        if (newState?.success && newState.result) {
+            updateHistory(newState.result);
+        }
+    });
+  };
+
+  const updateHistory = (result: DiagnosisResult) => {
+      if(result) {
+        const newEntry: DiagnosisHistoryItem = {
+            disease: result.possibleDiseases[0]?.name || 'Unknown',
+            date: new Date().toLocaleDateString(undefined, { day: 'numeric', month: 'short' }),
+            confidence: getConfidenceString(result.confidenceLevel),
+            confidenceValue: result.confidenceLevel,
+        };
+        setDiagnosesHistory(prev => [newEntry, ...prev]);
+      }
+  }
+
 
   useEffect(() => {
     if (state?.success === false && state.message) {
@@ -138,7 +159,11 @@ export default function Diagnosis() {
       });
     }
     if (state?.success === true) {
-      handleRemoveImage();
+      if (state.isTextDiagnosis) {
+        textFormRef.current?.reset();
+      } else {
+        handleRemoveImage();
+      }
     }
   }, [state, toast]);
   
@@ -150,7 +175,6 @@ export default function Diagnosis() {
         setImageDataUri(resizedDataUrl);
       });
     }
-     // Reset file input to allow capturing the same file again
     if (event.target) {
       event.target.value = '';
     }
@@ -172,7 +196,7 @@ export default function Diagnosis() {
       <Card className="w-full">
         <CardHeader>
           <CardTitle>Diagnosis Result</CardTitle>
-          <CardDescription>AI-generated suggestions based on the uploaded image.</CardDescription>
+          <CardDescription>AI-generated suggestions based on your input.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div>
@@ -227,74 +251,89 @@ export default function Diagnosis() {
 
   return (
     <div className="space-y-8">
-      <form ref={formRef} action={performDiagnosis}>
-        <Card className="w-full">
-          <input type="hidden" name="photoDataUri" value={imageDataUri} />
-          <CardContent className="p-6">
-            {previewUrl ? (
-              <div className="space-y-4">
-                <div className="relative w-full aspect-video rounded-md overflow-hidden">
-                  <Image src={previewUrl} alt="Image preview" fill className="object-contain" />
-                   <Button
-                      type="button"
-                      variant="destructive"
-                      size="icon"
-                      className="absolute top-2 right-2 h-8 w-8 rounded-full z-10"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleRemoveImage();
-                      }}
-                    >
-                      <X className="h-4 w-4" />
-                  </Button>
-                </div>
-                <div className="flex gap-2">
-                    <Button type="button" variant="outline" onClick={handleRemoveImage} className="w-full">
-                        Cancel
-                    </Button>
-                    <Button type="submit" disabled={isPending} className="w-full">
-                      {isPending ? (
-                        <>
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          Diagnosing...
-                        </>
-                      ) : (
-                        <>
-                          <Wand2 className="mr-2 h-4 w-4" />
-                          Get Diagnosis
-                        </>
-                      )}
-                    </Button>
-                </div>
-              </div>
-            ) : (
-              <div className="text-center p-8 border-2 border-dashed border-border rounded-lg space-y-4">
-                <div className="flex justify-center">
-                  <div className="bg-primary/10 rounded-full p-4 text-primary">
-                    <Camera className="h-10 w-10" />
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold">Tap to upload photo</h3>
-                  <p className="text-muted-foreground">Take a picture or select from gallery</p>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                   <Button type="button" onClick={() => cameraInputRef.current?.click()} size="lg" className="bg-green-500 hover:bg-green-600 text-white">
-                    <Camera className="mr-2" />
-                    Camera
-                  </Button>
-                  <Button type="button" onClick={() => fileInputRef.current?.click()} variant="secondary" size="lg">
-                    <GalleryHorizontal className="mr-2" />
-                    Gallery
-                  </Button>
-                  <input type="file" ref={cameraInputRef} onChange={handleFileChange} className="hidden" accept="image/*" capture="environment" />
-                  <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept="image/*" />
-                </div>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </form>
+        <Tabs defaultValue="image" className="w-full">
+            <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="image"><ImageIcon className="mr-2 h-4 w-4" /> With Image</TabsTrigger>
+                <TabsTrigger value="text"><Type className="mr-2 h-4 w-4" /> With Text</TabsTrigger>
+            </TabsList>
+            <TabsContent value="image">
+                <form ref={imageFormRef} action={performImageDiagnosis}>
+                    <Card className="w-full">
+                    <input type="hidden" name="photoDataUri" value={imageDataUri} />
+                    <CardContent className="p-6">
+                        {previewUrl ? (
+                        <div className="space-y-4">
+                            <div className="relative w-full aspect-video rounded-md overflow-hidden">
+                            <Image src={previewUrl} alt="Image preview" fill className="object-contain" />
+                            <Button
+                                type="button"
+                                variant="destructive"
+                                size="icon"
+                                className="absolute top-2 right-2 h-8 w-8 rounded-full z-10"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleRemoveImage();
+                                }}
+                                >
+                                <X className="h-4 w-4" />
+                            </Button>
+                            </div>
+                            <div className="flex gap-2">
+                                <Button type="button" variant="outline" onClick={handleRemoveImage} className="w-full">
+                                    Cancel
+                                </Button>
+                                <SubmitButton isPending={isPending} text="Get Diagnosis" />
+                            </div>
+                        </div>
+                        ) : (
+                        <div className="text-center p-8 border-2 border-dashed border-border rounded-lg space-y-4">
+                            <div className="flex justify-center">
+                            <div className="bg-primary/10 rounded-full p-4 text-primary">
+                                <Camera className="h-10 w-10" />
+                            </div>
+                            </div>
+                            <div>
+                            <h3 className="text-xl font-semibold">Tap to upload photo</h3>
+                            <p className="text-muted-foreground">Take a picture or select from gallery</p>
+                            </div>
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <Button type="button" onClick={() => cameraInputRef.current?.click()} size="lg" className="bg-green-500 hover:bg-green-600 text-white">
+                                <Camera className="mr-2" />
+                                Camera
+                            </Button>
+                            <Button type="button" onClick={() => fileInputRef.current?.click()} variant="secondary" size="lg">
+                                <GalleryHorizontal className="mr-2" />
+                                Gallery
+                            </Button>
+                            <input type="file" ref={cameraInputRef} onChange={handleFileChange} className="hidden" accept="image/*" capture="environment" />
+                            <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept="image/*" />
+                            </div>
+                        </div>
+                        )}
+                    </CardContent>
+                    </Card>
+                </form>
+            </TabsContent>
+            <TabsContent value="text">
+                <form ref={textFormRef} action={performTextDiagnosis}>
+                    <Card>
+                        <CardContent className="p-6 space-y-4">
+                             <div>
+                                <h3 className="text-xl font-semibold">Describe the symptoms</h3>
+                                <p className="text-muted-foreground">Be as detailed as possible. Include information about droppings, behavior, and physical appearance.</p>
+                            </div>
+                            <Textarea 
+                                name="description"
+                                placeholder="e.g., The chicken is weak, has greenish diarrhea, and its wings are drooping..." 
+                                rows={6}
+                                required
+                            />
+                            <SubmitButton isPending={isPending} text="Get Text-Based Diagnosis" />
+                        </CardContent>
+                    </Card>
+                </form>
+            </TabsContent>
+        </Tabs>
       
       <div>
         <h2 className="text-xl font-bold text-center mb-4">Tips for best results</h2>
