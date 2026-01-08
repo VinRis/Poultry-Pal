@@ -4,7 +4,7 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Home, Stethoscope, Menu, User, BookOpen, Settings, ArrowLeft, Bookmark } from 'lucide-react';
+import { Home, Stethoscope, Menu, User, BookOpen, Settings, ArrowLeft, Bookmark, Building2 } from 'lucide-react';
 import Logo from './logo';
 import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
@@ -18,11 +18,13 @@ const navItems = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/diagnose', label: 'Diagnosis', icon: Stethoscope },
   { href: '/learn', label: 'Learn', icon: BookOpen },
+  { href: '/suppliers', label: 'Suppliers', icon: Building2 },
 ];
 
 const getPageTitle = (pathname: string) => {
     if (pathname === '/') return 'Poultry Pal';
     if (pathname.startsWith('/diagnose')) return 'Diagnosis';
+    if (pathname.startsWith('/suppliers')) return 'Suppliers';
 
     if (pathname.startsWith('/learn/breeds/')) {
         const slug = pathname.split('/').pop();

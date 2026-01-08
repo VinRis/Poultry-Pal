@@ -166,9 +166,11 @@ export default function BreedDetailPage({ params }: { params: { slug: string } }
               Diagnosis
             </Link>
           </Button>
-          <Button className="w-full h-14 text-base bg-green-500 hover:bg-green-600 text-white">
-            <ShoppingBasket className="mr-2" />
-            Find Suppliers
+          <Button asChild className="w-full h-14 text-base bg-green-500 hover:bg-green-600 text-white">
+            <Link href="/suppliers">
+              <ShoppingBasket className="mr-2" />
+              Find Suppliers
+            </Link>
           </Button>
         </div>
       </div>
