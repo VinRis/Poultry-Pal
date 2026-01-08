@@ -22,7 +22,6 @@ const navItems = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/diagnose', label: 'Diagnosis', icon: Stethoscope },
   { href: '/learn', label: 'Learn', icon: BookOpen },
-  { href: '/profile', label: 'Profile', icon: User },
 ];
 
 

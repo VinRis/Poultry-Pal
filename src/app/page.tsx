@@ -4,21 +4,21 @@ import {
   Feather,
   BookOpen,
   Camera,
-  Settings,
   MapPin,
   Sun,
   ChevronRight,
   TrendingUp,
   Egg,
   Drumstick,
-  Sparkles
+  Sparkles,
+  Info
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { placeholderImages } from '@/lib/placeholder-data';
 import { Badge } from '@/components/ui/badge';
+import Logo from '@/components/common/logo';
 
 export default function Home() {
   const heroImage = placeholderImages.find((img) => img.id === 'hero-1');
@@ -60,20 +60,9 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <header className="p-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Avatar className="h-12 w-12 border-2 border-primary">
-            <AvatarImage src="https://picsum.photos/seed/farmer/100/100" data-ai-hint="farmer portrait" alt="Farmer" />
-            <AvatarFallback>FP</AvatarFallback>
-          </Avatar>
-          <div>
-            <p className="text-sm text-muted-foreground">Jambo,</p>
-            <h1 className="font-bold text-lg">Farmer Jane</h1>
-          </div>
-        </div>
-        <Button variant="ghost" size="icon">
-          <Settings className="w-6 h-6" />
-        </Button>
+      <header className="p-4 flex items-center gap-2">
+        <Logo className="w-10 h-10 text-primary" />
+        <h1 className="font-bold text-2xl text-foreground">Poultry Pal</h1>
       </header>
       
       <main className="flex-1 p-4 space-y-8">
