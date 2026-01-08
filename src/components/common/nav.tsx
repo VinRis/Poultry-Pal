@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Home, Stethoscope, BookOpen, Menu, User, Users } from 'lucide-react';
+import { Home, Stethoscope, Menu, User, Users } from 'lucide-react';
 
 import {
   SidebarHeader,
@@ -14,11 +14,9 @@ import {
   Sidebar,
   SidebarProvider,
   SidebarInset,
-  SidebarFooter
 } from '@/components/ui/sidebar';
 import Logo from './logo';
 import { cn } from '@/lib/utils';
-import { Button } from '../ui/button';
 
 const navItems = [
   { href: '/', label: 'Home', icon: Home },
@@ -42,25 +40,32 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         />
       </head>
       <body className="font-body antialiased" suppressHydrationWarning>
-         <div className="md:hidden fixed bottom-0 left-0 right-0 bg-background border-t z-50">
-            <div className="flex justify-around items-center p-2">
-               {navItems.map((item) => {
-                  const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
-                  return (
-                     <Link key={item.href} href={item.href} className={cn(
-                        "flex flex-col items-center gap-1 p-2 rounded-md transition-colors",
-                        isActive ? 'text-primary' : 'text-muted-foreground'
-                     )}>
-                        <item.icon className="w-6 h-6" />
-                        <span className="text-xs font-medium">{item.label}</span>
-                     </Link>
-                  )
-               })}
+        <SidebarProvider>
+          <Sidebar>
+            <Nav />
+          </Sidebar>
+          <SidebarInset>
+            <div className="md:hidden fixed bottom-0 left-0 right-0 bg-background border-t z-50">
+                <div className="flex justify-around items-center p-2">
+                  {navItems.map((item) => {
+                      const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
+                      return (
+                        <Link key={item.href} href={item.href} className={cn(
+                            "flex flex-col items-center gap-1 p-2 rounded-md transition-colors",
+                            isActive ? 'text-primary' : 'text-muted-foreground'
+                        )}>
+                            <item.icon className="w-6 h-6" />
+                            <span className="text-xs font-medium">{item.label}</span>
+                        </Link>
+                      )
+                  })}
+                </div>
             </div>
-         </div>
-         <div className="pb-20 md:pb-0">
-          {children}
-         </div>
+            <div className="pb-20 md:pb-0">
+              {children}
+            </div>
+          </SidebarInset>
+        </SidebarProvider>
       </body>
     </html>
   )
@@ -71,7 +76,7 @@ export default function Nav() {
 
   return (
     <>
-      <SidebarHeader className="hidden">
+      <SidebarHeader>
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 font-headline text-lg font-semibold text-sidebar-foreground">
             <Logo className="w-8 h-8 text-primary" />
@@ -85,7 +90,7 @@ export default function Nav() {
         </div>
       </SidebarHeader>
 
-      <SidebarContent className="hidden">
+      <SidebarContent>
         <SidebarMenu>
           {navItems.map((item) => (
             <SidebarMenuItem key={item.href}>
