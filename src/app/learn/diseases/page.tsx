@@ -203,17 +203,6 @@ export default function DiseasesPage() {
           </Dialog>
         )}
 
-        <Card className="bg-slate-800 text-white rounded-2xl p-6 text-center">
-            <div className="flex justify-center mb-4">
-                <div className="bg-green-500/20 text-green-400 p-3 rounded-full">
-                    <BriefcaseMedical className="w-8 h-8" />
-                </div>
-            </div>
-            <h3 className="text-xl font-bold mb-2">Need expert advice?</h3>
-            <p className="text-slate-300 mb-4">Connect with local veterinarians in your area for specialized treatment plans.</p>
-            <Button className="bg-green-500 hover:bg-green-600 text-white rounded-full px-6">Find a Vet</Button>
-        </Card>
-
       </main>
 
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
