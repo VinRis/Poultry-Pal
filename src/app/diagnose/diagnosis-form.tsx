@@ -225,7 +225,9 @@ export default function Diagnosis() {
           </Alert>
         </CardContent>
         <CardFooter>
-          <Button onClick={() => formAction(new FormData())} variant="outline" className="w-full">Start New Diagnosis</Button>
+            <form action={formAction} className="w-full">
+                <Button type="submit" variant="outline" className="w-full">Start New Diagnosis</Button>
+            </form>
         </CardFooter>
       </Card>
     )
