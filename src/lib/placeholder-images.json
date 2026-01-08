@@ -1,3 +1,52 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-1",
+      "description": "A vibrant picture of healthy chickens in a farm setting.",
+      "imageUrl": "https://images.unsplash.com/photo-1617457563976-8c8190235034?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjaGlja2VucyUyMGZhcm18ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "chickens farm"
+    },
+    {
+      "id": "learn-1",
+      "description": "An educational image showing different types of chicken feed.",
+      "imageUrl": "https://images.unsplash.com/photo-1697385047263-279290fab59d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjaGlja2VuJTIwZmVlZHxlbnwwfHx8fDE3Njc3ODMzOTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "chicken feed"
+    },
+    {
+      "id": "kienyeji-1",
+      "description": "Image of a Kienyeji chicken.",
+      "imageUrl": "https://images.unsplash.com/photo-1694267518713-0543ffa17166?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxraWVueWVqaSUyMGNoaWNrZW58ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "kienyeji chicken"
+    },
+    {
+      "id": "kuroiler-1",
+      "description": "Image of a Kuroiler chicken.",
+      "imageUrl": "https://images.unsplash.com/photo-1608872689366-4cbcf0c7e72c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxrdXJvaWxlciUyMGNoaWNrZW58ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "kuroiler chicken"
+    },
+    {
+      "id": "kenbro-1",
+      "description": "Image of a Kenbro chicken.",
+      "imageUrl": "https://images.unsplash.com/photo-1694267518713-0543ffa17166?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxrZW5icm8lMjBjaGlja2VufGVufDB8fHx8MTc2Nzg1NTY5OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "kenbro chicken"
+    },
+    {
+      "id": "layers-1",
+      "description": "Image of laying hens producing eggs.",
+      "imageUrl": "https://images.unsplash.com/photo-1751226993207-c9d082eed78f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsYXlpbmclMjBoZW5zfGVufDB8fHx8MTc2Nzg1NTY5OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "laying hens"
+    },
+    {
+      "id": "broilers-1",
+      "description": "Image of broiler chickens.",
+      "imageUrl": "https://images.unsplash.com/photo-1764060126485-46e72c85f1ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxicm9pbGVyJTIwY2hpY2tlbnN8ZW58MHx8fHwxNzY3ODU1Njk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "broiler chickens"
+    },
+    {
+      "id": "diseases-1",
+      "description": "Image related to poultry health.",
+      "imageUrl": "https://images.unsplash.com/photo-1689356156837-6ddbf5776818?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwb3VsdHJ5JTIwaGVhbHRofGVufDB8fHx8MTc2Nzg1NTY5OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "poultry health"
+    }
+  ]
 }
