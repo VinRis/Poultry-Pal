@@ -171,8 +171,8 @@ export default function Diagnosis() {
   ];
   
   const recentDiagnoses = [
-    { disease: 'Newcastle Disease', date: 'Yesterday', confidence: 'High', icon: '/images/newcastle.png', statusIcon: <AlertTriangle className="text-destructive" /> },
-    { disease: 'Coccidiosis', date: '2 days ago', confidence: 'Medium', icon: '/images/coccidiosis.png', statusIcon: <Info className="text-yellow-500" /> },
+    { disease: 'Newcastle Disease', date: 'Yesterday', confidence: 'High', statusIcon: <AlertTriangle className="text-destructive" /> },
+    { disease: 'Coccidiosis', date: '2 days ago', confidence: 'Medium', statusIcon: <Info className="text-yellow-500" /> },
   ]
 
   if (state?.success && state.result) {
@@ -319,7 +319,6 @@ export default function Diagnosis() {
           {recentDiagnoses.map((item) => (
             <Card key={item.disease} className="p-4 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <Image src={item.icon} alt={item.disease} width={48} height={48} className="rounded-md object-cover" />
                 <div>
                   <p className="font-semibold">{item.disease}</p>
                   <p className="text-sm text-muted-foreground">{item.date} • {item.confidence} Confidence</p>
