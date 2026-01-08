@@ -18,6 +18,7 @@ export default function BroilersPage() {
       <PageHeader
         title={broilersGuide.title}
         description={broilersGuide.introduction}
+        showBackButton={true}
       />
 
        {image &&

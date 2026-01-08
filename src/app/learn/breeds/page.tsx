@@ -10,6 +10,7 @@ export default function BreedsPage() {
       <PageHeader
         title="Poultry Breeds"
         description="Discover local and improved breeds suitable for farming in East Africa."
+        showBackButton={true}
       />
 
       <div className="mt-8 space-y-8">

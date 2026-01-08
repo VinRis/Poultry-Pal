@@ -18,6 +18,7 @@ export default function LayersPage() {
       <PageHeader
         title={layersGuide.title}
         description={layersGuide.introduction}
+        showBackButton={true}
       />
       
       {image &&
